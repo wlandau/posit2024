@@ -1,0 +1,42 @@
+---
+format:
+   revealjs:
+     slide-number: true
+     footer: "&copy; 2024 Hikbiki AI Limited, Eli Lilly and Company"
+     view-distance: 100
+     mobile-view-distance: 100
+---
+
+##
+
+```{r, include = FALSE, echo = FALSE}
+knitr::opts_chunk$set(
+  cache = FALSE,
+  comment = "#>",
+  fig.width = 10, 
+  fig.height = 5
+)
+```
+
+<style>
+.reveal .tiny {
+  display: inline-block;
+  font-size: 0.5em;
+  line-height: 1.0em;
+  vertical-align: top;
+}
+.reveal .medium {
+  display: inline-block;
+  font-size: 0.75em;
+  line-height: 1.5em;
+  vertical-align: top;
+}
+</style>
+
+<center>
+<br>
+<h4>{mirai} and {crew}: next-generation async to supercharge {promises}, Plumber, Shiny, and {targets}</h4>
+<img src="./images/title.png" height="400px">
+<br>
+<h4>Charlie Gao and Will Landau</h4>
+</center>

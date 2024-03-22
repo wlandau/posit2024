@@ -1,6 +1,7 @@
 *~
 *.out
 *.Rout
+*.pptx
 .DS_Store
 .Rapp.history
 .RData
