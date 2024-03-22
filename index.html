@@ -28,6 +28,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
   <link rel="stylesheet" href="index_files/libs/revealjs/dist/theme/quarto.css">
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -343,7 +408,7 @@
 <center>
 <br>
 <h4>
-{mirai} and {crew}: next-generation async to supercharge {promises}, Plumber, Shiny, and {targets}
+<code>mirai</code> and <code>crew</code>: next-generation async to supercharge <code>promises</code>, Plumber, Shiny, and <code>targets</code>
 </h4>
 <img src="./images/title.png" height="400px"> <br>
 <h4>
@@ -362,6 +427,70 @@ Charlie Gao and Will Landau
 <center>
 <img src="./images/crew.png">
 </center>
+</section>
+<section id="why-crew" class="slide level2">
+<h2>Why <code>crew</code>?</h2>
+<center>
+<img src="./images/plugins.png" width="750">
+</center>
+<ul>
+<li>Extends <code>mirai</code> to distributed computing.</li>
+<li>Plugin system for clusters and cloud services.</li>
+<li>Central interface and worker auto-scaling.</li>
+<li>Works with Shiny, <code>promises</code>, and <code>targets</code>.</li>
+</ul>
+</section>
+<section id="crew-basics" class="slide level2">
+<h2><code>crew</code> basics</h2>
+<div class="columns">
+<div class="column" style="width:75%;">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Start a controller.</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(crew)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>controller <span class="ot">&lt;-</span> <span class="fu">crew_controller_local</span>(</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="at">workers =</span> <span class="dv">2</span>,</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="at">seconds_idle =</span> <span class="dv">10</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a>controller<span class="sc">$</span><span class="fu">start</span>()</span>
+<span id="cb1-8"><a href="#cb1-8"></a></span>
+<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># Submit tasks asynchronously.</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>controller<span class="sc">$</span><span class="fu">push</span>(<span class="at">command =</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-11"><a href="#cb1-11"></a>controller<span class="sc">$</span><span class="fu">push</span>(<span class="at">command =</span> <span class="fu">sqrt</span>(<span class="dv">9</span>))</span>
+<span id="cb1-12"><a href="#cb1-12"></a></span>
+<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># Wait for a task to finish.</span></span>
+<span id="cb1-14"><a href="#cb1-14"></a>controller<span class="sc">$</span><span class="fu">wait</span>(<span class="at">mode =</span> <span class="st">"one"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15"></a></span>
+<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># Collect the result.</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>controller<span class="sc">$</span><span class="fu">pop</span>()<span class="sc">$</span>result[[<span class="dv">1</span>]]</span>
+<span id="cb1-18"><a href="#cb1-18"></a><span class="co">#&gt; [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:25%;">
+<p><img src="./images/crew.png"></p>
+</div>
+</div>
+</section>
+<section id="slurm-plugin" class="slide level2">
+<h2>SLURM plugin</h2>
+<div class="columns">
+<div class="column" style="width:75%;">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Start a controller with many workers.</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(crew.cluster)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>controller <span class="ot">&lt;-</span> <span class="fu">crew_controller_slurm</span>(</span>
+<span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">workers =</span> <span class="dv">100</span>,</span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">slurm_cpus_per_task =</span> <span class="dv">4</span>,</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="at">script_lines =</span> <span class="st">"module load R"</span></span>
+<span id="cb2-8"><a href="#cb2-8"></a>)</span>
+<span id="cb2-9"><a href="#cb2-9"></a>controller<span class="sc">$</span><span class="fu">start</span>()</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># Submit many tasks asynchronously.</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>controller<span class="sc">$</span><span class="fu">walk</span>(</span>
+<span id="cb2-13"><a href="#cb2-13"></a>  <span class="at">command =</span> <span class="fu">your_expensive_task</span>(<span class="at">data =</span> object),</span>
+<span id="cb2-14"><a href="#cb2-14"></a>  <span class="at">iterate =</span> <span class="fu">list</span>(<span class="at">object =</span> list_of_objects),</span>
+<span id="cb2-15"><a href="#cb2-15"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">expensive_task =</span> expensive_task)</span>
+<span id="cb2-16"><a href="#cb2-16"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column" style="width:25%;">
+<p><img src="./images/crew.cluster.png"></p>
+</div>
+</div>
 <div class="footer footer-default">
 <p>© 2024 Hikbiki AI Limited, Eli Lilly and Company</p>
 </div>
