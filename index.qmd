@@ -136,3 +136,8 @@ controller$walk(
 
 ::::
 
+## `crew` with `promises`
+
+## `crew` with Shiny
+
+## `crew` with `targets`
