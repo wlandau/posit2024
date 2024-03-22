@@ -40,3 +40,18 @@ knitr::opts_chunk$set(
 <br>
 <h4>Charlie Gao and Will Landau</h4>
 </center>
+
+## 
+
+<center>
+<img src="./images/mirai.png">
+</center>
+
+## 
+
+<center>
+<img src="./images/crew.png">
+</center>
+
+## 
+
