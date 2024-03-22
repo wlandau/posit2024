@@ -1,0 +1,9 @@
+*~
+*.out
+*.Rout
+.DS_Store
+.Rapp.history
+.RData
+.Rhistory
+.Rproj.user
+README.html
