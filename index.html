@@ -439,8 +439,8 @@ Charlie Gao and Will Landau
 <ul>
 <li>Extends <code>mirai</code> to distributed computing.</li>
 <li>Plugin system for clusters and cloud services.</li>
-<li>Central interface and worker auto-scaling.</li>
-<li>Works with Shiny, <code>promises</code>, and <code>targets</code>.</li>
+<li>Centralized interface and worker auto-scaling.</li>
+<li>Integrates with Shiny, <code>promises</code>, and <code>targets</code>.</li>
 </ul>
 </section>
 <section id="crew-basics" class="slide level2">
@@ -470,17 +470,17 @@ Charlie Gao and Will Landau
 </div>
 </div>
 </section>
-<section id="slurm-plugin" class="slide level2">
-<h2>SLURM plugin</h2>
-<div class="columns">
+<section id="aws-batch-plugin" class="slide level2">
+<h2>AWS Batch plugin</h2>
+<div class="columns" style="font-size:95%">
 <div class="column" style="width:75%;">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Start a controller with many workers.</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(crew.cluster)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>controller <span class="ot">&lt;-</span> <span class="fu">crew_controller_slurm</span>(</span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Start an AWS Batch controller with many workers.</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(crew.aws.batch)</span>
+<span id="cb2-3"><a href="#cb2-3"></a>controller <span class="ot">&lt;-</span> <span class="fu">crew_controller_aws_batch</span>(</span>
 <span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">workers =</span> <span class="dv">100</span>,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">slurm_cpus_per_task =</span> <span class="dv">4</span>,</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
-<span id="cb2-7"><a href="#cb2-7"></a>  <span class="at">script_lines =</span> <span class="st">"module load R"</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">seconds_idle =</span> <span class="dv">60</span>,</span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="at">aws_batch_job_definition =</span> <span class="st">"YOUR_JOB_DEFINITION"</span>,</span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="at">aws_batch_job_queue =</span> <span class="st">"YOUR_JOB_QUEUE"</span></span>
 <span id="cb2-8"><a href="#cb2-8"></a>)</span>
 <span id="cb2-9"><a href="#cb2-9"></a>controller<span class="sc">$</span><span class="fu">start</span>()</span>
 <span id="cb2-10"><a href="#cb2-10"></a></span>
@@ -491,7 +491,7 @@ Charlie Gao and Will Landau
 <span id="cb2-15"><a href="#cb2-15"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">expensive_task =</span> expensive_task)</span>
 <span id="cb2-16"><a href="#cb2-16"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:25%;">
-<p><img src="./images/crew.cluster.png"></p>
+<p><img src="./images/crew.aws.batch.png"></p>
 </div>
 </div>
 </section>
@@ -538,29 +538,28 @@ Charlie Gao and Will Landau
 </section>
 <section id="crew-with-targets" class="slide level2">
 <h2><code>crew</code> with <code>targets</code></h2>
-<p><br></p>
 <div class="columns" style="font-size: 80%">
-<div class="column" style="width:50%;">
+<div class="column" style="width:55%;">
 <h3 id="targets.r-file"><code>_targets.R</code> file</h3>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(targets)</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(crew.cluster)</span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">tar_option_set</span>(</span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="at">controller =</span> <span class="fu">crew_controller_slurm</span>(</span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="at">workers =</span> <span class="dv">3</span>,</span>
-<span id="cb5-6"><a href="#cb5-6"></a>    <span class="at">slurm_cpus_per_task =</span> <span class="dv">4</span>,</span>
-<span id="cb5-7"><a href="#cb5-7"></a>    <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
-<span id="cb5-8"><a href="#cb5-8"></a>    <span class="at">script_lines =</span> <span class="st">"module load R"</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a>  )</span>
-<span id="cb5-10"><a href="#cb5-10"></a>)</span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="fu">tar_source</span>()</span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="fu">list</span>(</span>
-<span id="cb5-13"><a href="#cb5-13"></a>  <span class="fu">tar_target</span>(</span>
-<span id="cb5-14"><a href="#cb5-14"></a>    <span class="at">name =</span> data,</span>
-<span id="cb5-15"><a href="#cb5-15"></a>    <span class="at">command =</span> <span class="fu">get_data</span>()</span>
-<span id="cb5-16"><a href="#cb5-16"></a>  ),</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(crew.aws.batch)</span>
+<span id="cb5-3"><a href="#cb5-3"></a>batch <span class="ot">&lt;-</span> <span class="fu">crew_controller_aws_batch</span>(<span class="st">"..."</span>)</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">tar_option_set</span>(</span>
+<span id="cb5-6"><a href="#cb5-6"></a>  <span class="co"># For AWS Batch:</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>  <span class="at">controller =</span> batch,</span>
+<span id="cb5-8"><a href="#cb5-8"></a>  </span>
+<span id="cb5-9"><a href="#cb5-9"></a>  <span class="co"># For AWS S3:</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>  <span class="at">repository =</span> <span class="st">"aws"</span>,</span>
+<span id="cb5-11"><a href="#cb5-11"></a>  <span class="at">resources =</span> <span class="fu">tar_resources</span>(<span class="at">aws =</span> <span class="st">"..."</span>)</span>
+<span id="cb5-12"><a href="#cb5-12"></a>)</span>
+<span id="cb5-13"><a href="#cb5-13"></a></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="fu">tar_source</span>()</span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">list</span>(</span>
+<span id="cb5-16"><a href="#cb5-16"></a>  <span class="fu">tar_target</span>(data, <span class="fu">get_data</span>()),</span>
 <span id="cb5-17"><a href="#cb5-17"></a>  <span class="co"># ...</span></span>
 <span id="cb5-18"><a href="#cb5-18"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:50%;">
+</div><div class="column" style="width:45%;">
 <h3 id="dependency-graph">Dependency graph</h3>
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
