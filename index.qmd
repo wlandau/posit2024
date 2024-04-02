@@ -41,6 +41,17 @@ knitr::opts_chunk$set(
 <h4>Charlie Gao and Will Landau</h4>
 </center>
 
+##
+
+<center>
+<img src="./images/mirai-crew.png" width=575>
+</center>
+
+* Modern: next-gen parallel computing for R.
+* Fast: high throughput and low overhead.
+* Adaptable: SLURM, AWS Batch, user-defined plugins, etc. 
+* Friendly: seamless with Shiny, `promises`, and `targets`.
+
 ## 
 
 <center>
@@ -60,7 +71,8 @@ knitr::opts_chunk$set(
 </center>
 
 * Extends `mirai` to distributed computing.
-* Plugin system for clusters and cloud services.
+* Plugins for clusters and cloud services.
+* Users can write plugins of their own.
 * Centralized interface and worker auto-scaling.
 * Integrates with Shiny, `promises`, and `targets`.
 
