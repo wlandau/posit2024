@@ -49,11 +49,9 @@ knitr::opts_chunk$set(
 
 :::: {style="font-size:85%"}
 
-* Machine learning, Bayesian data analysis, genomics, simulation, etc. need parallel/async computing.
-* `crew` and `mirai`: next-gen parallel/async packages for R.
-    1. Fast: high throughput, low overhead
-    1. Adaptable: SLURM, AWS Batch, user-defined plugins, etc. 
-    1. Friendly: compatible with Shiny, `promises`, and `targets`.
+* Machine learning, Bayesian data analysis, genomics, and simulation are demanding workflows with many long-running tasks.
+* Parallel/async computing is essential.
+* `crew` and `mirai`: next-gen parallel/async for R.
 
 ::::
 
