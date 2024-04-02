@@ -44,13 +44,18 @@ knitr::opts_chunk$set(
 ##
 
 <center>
-<img src="./images/mirai-crew.png" width=575>
+<img src="./images/mirai-crew.png" width=500>
 </center>
 
-* Modern: next-gen parallel computing for R.
-* Fast: high throughput and low overhead.
-* Adaptable: SLURM, AWS Batch, user-defined plugins, etc. 
-* Friendly: seamless with Shiny, `promises`, and `targets`.
+:::: {style="font-size:85%"}
+
+* Machine learning, Bayesian data analysis, genomics, simulation, etc. need parallel/async computing.
+* `crew` and `mirai`: next-gen parallel/async packages for R.
+    1. Fast: high throughput, low overhead
+    1. Adaptable: SLURM, AWS Batch, user-defined plugins, etc. 
+    1. Friendly: compatible with Shiny, `promises`, and `targets`.
+
+::::
 
 ## 
 
