@@ -74,8 +74,8 @@ knitr::opts_chunk$set(
 </center>
 
 * Extends `mirai` to distributed computing.
-* Plugins for clusters and cloud services.
-* Users can write plugins of their own.
+* Offers plugins for clusters and cloud services.
+* Supports users to write custom plugins.
 * Centralized interface and worker auto-scaling.
 * Integrates with Shiny, `promises`, and `targets`.
 
