@@ -41,17 +41,17 @@ knitr::opts_chunk$set(
 <h4>Charlie Gao and Will Landau</h4>
 </center>
 
-##
+## Intense computation 
 
 <center>
-<img src="./images/mirai-crew.png" width=500>
+<img src="./images/workload-horizontal.png" width=700>
 </center>
 
 :::: {style="font-size:85%"}
 
-* Machine learning, Bayesian data analysis, genomics, and simulation are demanding workflows with many long-running tasks.
+* Machine learning, Bayesian data analysis, genomics, and simulation are demanding.
 * Parallel/async computing is essential.
-* `crew` and `mirai`: next-gen parallel/async for R.
+* `crew` and `mirai` are next-gen parallel/async for R.
 
 ::::
 
