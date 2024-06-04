@@ -134,7 +134,6 @@ controller$push(command = sqrt(9))
 :::: {style="font-size:150%"}
 
 ```r
-# Collect the result.
 controller$pop()$result[[1]] # from sqrt(9)
 #> [1] 3
 
