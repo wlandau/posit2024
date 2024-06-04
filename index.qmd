@@ -2,6 +2,7 @@
 format:
    revealjs:
      slide-number: true
+     incremental: true
      footer: "&copy; 2024 Hikbiki AI Limited, Eli Lilly and Company"
      view-distance: 100
      mobile-view-distance: 100
@@ -41,20 +42,6 @@ knitr::opts_chunk$set(
 <h4>Charlie Gao and Will Landau</h4>
 </center>
 
-## Intense computation 
-
-<center>
-<img src="./images/workload-horizontal.png" width=700>
-</center>
-
-:::: {style="font-size:85%"}
-
-* Machine learning, Bayesian data analysis, genomics, and simulation are demanding.
-* Parallel/async computing is essential.
-* `crew` and `mirai` are next-gen parallel/async for R.
-
-::::
-
 ## 
 
 <center>
@@ -67,23 +54,52 @@ knitr::opts_chunk$set(
 <img src="./images/crew.png">
 </center>
 
-## Why `crew`?
+## Data science is demanding
 
 <center>
-<img src="./images/plugins.png" width=750>
+<img src="./images/workload-horizontal.png" width=700>
 </center>
 
-* Extends `mirai` to distributed computing.
-* Offers plugins for clusters and cloud services.
-* Supports users to write custom plugins.
-* Centralized interface and worker auto-scaling.
-* Integrates with Shiny, `promises`, and `targets`.
+* Heavy computation: machine learning, Bayesian data analysis, genomics, simulation
+* High-performance computing is
+    1. Expensive.
+    2. Difficult to access from R.
 
-## `crew` basics
+## `crew` helps data science scale
 
-:::: {.columns}
+<center>
+<img src="./images/plugins.png" width=700>
+</center>
 
-::: {.column width="75%"}
+1. Leverages the speed of `mirai`.
+2. Auto-scales to reduce cost and overhead.
+3. Flexible plugin system for high-performance computing platforms.
+
+## Auto-scaling reduces overhead & cost
+
+![](./images/autoscale1.png)
+
+## Auto-scaling reduces overhead & cost
+
+![](./images/autoscale2.png)
+
+## Auto-scaling reduces overhead & cost
+
+![](./images/autoscale3.png)
+
+## Auto-scaling reduces overhead & cost
+
+![](./images/autoscale4.png)
+
+## Auto-scaling reduces overhead & cost
+
+![](./images/autoscale5.png)
+
+## Step 1: start a `crew` controller
+
+<br>
+
+:::: {style="font-size:150%"}
 
 ```r
 # Start a controller.
@@ -93,51 +109,57 @@ controller <- crew_controller_local(
   seconds_idle = 10
 )
 controller$start()
-
-# Submit tasks asynchronously.
-controller$push(command = 1 + 1)
-controller$push(command = sqrt(9))
-
-# Wait for a task to finish.
-controller$wait(mode = "one")
-
-# Collect the result.
-controller$pop()$result[[1]]
-#> [1] 3
 ```
 
-:::
+::::
 
-::: {.column width="25%"}
+## Step 2: push tasks
 
-<img src="./images/crew.png">
+<br>
 
-:::
+:::: {style="font-size:150%"}
+
+```r
+controller$push(command = 1 + 1)
+controller$push(command = sqrt(9))
+```
+
+::::
+
+## Step 3: Collect results
+
+<br>
+
+:::: {style="font-size:150%"}
+
+```r
+# Collect the result.
+controller$pop()$result[[1]] # from sqrt(9)
+#> [1] 3
+
+controller$pop()$result[[1]] # from 1 + 1
+#> [1] 2
+
+controller$pop()$result[[1]] # no more results 
+#> NULL
+```
 
 ::::
 
 ## AWS Batch plugin
 
-:::: {.columns style="font-size:95%"}
+:::: {.columns style="font-size:125%"}
 
 ::: {.column width="75%"}
 
+<br>
+
 ```r
-# Start an AWS Batch controller with many workers.
-library(crew.aws.batch)
-controller <- crew_controller_aws_batch(
+crew_controller_aws_batch(
   workers = 100,
   seconds_idle = 60,
-  aws_batch_job_definition = "YOUR_JOB_DEFINITION",
-  aws_batch_job_queue = "YOUR_JOB_QUEUE"
-)
-controller$start()
-
-# Submit many tasks asynchronously.
-controller$walk(
-  command = your_expensive_task(data = object),
-  iterate = list(object = list_of_objects),
-  data = list(expensive_task = expensive_task)
+  aws_batch_job_definition = "DEF",
+  aws_batch_job_queue = "QUEUE"
 )
 ```
 
@@ -153,112 +175,59 @@ controller$walk(
 
 ## `crew` with Shiny
 
-{{< video https://vimeo.com/927130003  width="100%" height="85%" >}}
+<br>
 
-## Extended tasks and `crew` promises
+:::: {style="font-size:125%"}
+
+```r
+extended <- ExtendedTask$new(func = identity)
+
+observeEvent(input$button, {
+  extended$invoke(controller$push(run_task(), ...))
+})
+```
+
+::::
 
 <br>
 
-:::: {.columns style="font-size: 80%"}
+:::: {.nonincremental}
 
-::: {.column width="43%"}
+* `mirai` + `promises` integration and Shiny extended tasks.
 
-### UI
+::::
 
-```r
-fluidPage(
-  actionButton(
-    "task",
-    "Submit a task (5 seconds)"
-  ),
-  textOutput("status"),
-  plotOutput("result")
-)
-```
+## Tasks to not block the app
 
-:::
-
-::: {.column width="57%"}
-
-### Server
-
-```r
-# Shiny extended task with a {crew} promise:
-task <- ExtendedTask$new(
-  function() controller$promise(mode = "one")
-)
-
-# Invoke the extended task on push.
-observeEvent(input$task, {
-  controller$push(
-    command = run_task(),
-    data = list(run_task = run_task)
-  )
-  task$invoke()
-})
-
-# Get results from the extended task.
-output$result <- renderPlot(
-  task$result()$result[[1]]
-)
-```
-
-:::
+{{< video https://vimeo.com/927130003  width="100%" height="85%" >}}
 
 ::::
 
 ## `crew` with `targets`
 
-:::: {.columns style="font-size: 80%"}
-
-::: {.column width="55%"}
-
-### `_targets.R` file
-
-```r
-library(targets)
-library(crew.aws.batch)
-batch <- crew_controller_aws_batch("...")
-
-tar_option_set(
-  # For AWS Batch:
-  controller = batch,
-  
-  # For AWS S3:
-  repository = "aws",
-  resources = tar_resources(aws = "...")
-)
-
-tar_source()
-list(
-  tar_target(data, get_data()),
-  # ...
-)
-```
-
-:::
-
-::: {.column width="45%"}
-
-### Dependency graph
+<br>
 
 ```{mermaid}
-graph TB
-  direction TB
+graph LR
+  direction LR
   x0b88dc07a3d2db7d(["model_covariates"]):::outdated --> x2f9fc018ab703ad9(["summary_covariates"]):::outdated
   xb7119b48552d1da3(["data"]):::outdated --> x0cdc9665e00a10da(["model_interactions"]):::outdated
-  xb7119b48552d1da3(["data"]):::outdated --> xbb787cf099f745bb(["model_simple"]):::outdated
   x0cdc9665e00a10da(["model_interactions"]):::outdated --> xe1021174c85186bb(["summary_interactions"]):::outdated
   x2f9fc018ab703ad9(["summary_covariates"]):::outdated --> x86c744fee9e9e798(["compare_models"]):::outdated
   xe1021174c85186bb(["summary_interactions"]):::outdated --> x86c744fee9e9e798(["compare_models"]):::outdated
-  x0c03b9a838de70e1(["summary_simple"]):::outdated --> x86c744fee9e9e798(["compare_models"]):::outdated
   x86c744fee9e9e798(["compare_models"]):::outdated --> x34784fce8899e1b4(["quarto_report"]):::outdated
   xb7119b48552d1da3(["data"]):::outdated --> x0b88dc07a3d2db7d(["model_covariates"]):::outdated
-  xbb787cf099f745bb(["model_simple"]):::outdated --> x0c03b9a838de70e1(["summary_simple"]):::outdated
   classDef outdated stroke:#000000,color:#000000,fill:#78B7C5;
   classDef none stroke:#000000,color:#000000,fill:#94a4ac;
 ```
 
-:::
+<br>
 
-::::
+```r
+tar_option_set(
+  controller = crew_controller_aws_batch(
+    workers = 100,
+    ...
+  )
+)
+```

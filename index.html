@@ -419,19 +419,6 @@ Charlie Gao and Will Landau
 </h4>
 </center>
 </section>
-<section id="intense-computation" class="slide level2">
-<h2>Intense computation</h2>
-<center>
-<img src="./images/workload-horizontal.png" width="700">
-</center>
-<div style="font-size:85%">
-<ul>
-<li>Machine learning, Bayesian data analysis, genomics, and simulation are demanding.</li>
-<li>Parallel/async computing is essential.</li>
-<li><code>crew</code> and <code>mirai</code> are next-gen parallel/async for R.</li>
-</ul>
-</div>
-</section>
 <section id="section-1" class="slide level2">
 <h2></h2>
 <center>
@@ -444,66 +431,98 @@ Charlie Gao and Will Landau
 <img src="./images/crew.png">
 </center>
 </section>
-<section id="why-crew" class="slide level2">
-<h2>Why <code>crew</code>?</h2>
+<section id="data-science-is-demanding" class="slide level2">
+<h2>Data science is demanding</h2>
 <center>
-<img src="./images/plugins.png" width="750">
+<img src="./images/workload-horizontal.png" width="700">
 </center>
 <ul>
-<li>Extends <code>mirai</code> to distributed computing.</li>
-<li>Offers plugins for clusters and cloud services.</li>
-<li>Supports users to write custom plugins.</li>
-<li>Centralized interface and worker auto-scaling.</li>
-<li>Integrates with Shiny, <code>promises</code>, and <code>targets</code>.</li>
+<li class="fragment">Heavy computation: machine learning, Bayesian data analysis, genomics, simulation</li>
+<li class="fragment">High-performance computing is
+<ol type="1">
+<li class="fragment">Expensive.</li>
+<li class="fragment">Difficult to access from R.</li>
+</ol></li>
 </ul>
 </section>
-<section id="crew-basics" class="slide level2">
-<h2><code>crew</code> basics</h2>
-<div class="columns">
-<div class="column" style="width:75%;">
+<section id="crew-helps-data-science-scale" class="slide level2">
+<h2><code>crew</code> helps data science scale</h2>
+<center>
+<img src="./images/plugins.png" width="700">
+</center>
+<ol type="1">
+<li class="fragment">Leverages the speed of <code>mirai</code>.</li>
+<li class="fragment">Auto-scales to reduce cost and overhead.</li>
+<li class="fragment">Flexible plugin system for high-performance computing platforms.</li>
+</ol>
+</section>
+<section id="auto-scaling-reduces-overhead-cost" class="slide level2">
+<h2>Auto-scaling reduces overhead &amp; cost</h2>
+
+<img data-src="./images/autoscale1.png" class="r-stretch"></section>
+<section id="auto-scaling-reduces-overhead-cost-1" class="slide level2">
+<h2>Auto-scaling reduces overhead &amp; cost</h2>
+
+<img data-src="./images/autoscale2.png" class="r-stretch"></section>
+<section id="auto-scaling-reduces-overhead-cost-2" class="slide level2">
+<h2>Auto-scaling reduces overhead &amp; cost</h2>
+
+<img data-src="./images/autoscale3.png" class="r-stretch"></section>
+<section id="auto-scaling-reduces-overhead-cost-3" class="slide level2">
+<h2>Auto-scaling reduces overhead &amp; cost</h2>
+
+<img data-src="./images/autoscale4.png" class="r-stretch"></section>
+<section id="auto-scaling-reduces-overhead-cost-4" class="slide level2">
+<h2>Auto-scaling reduces overhead &amp; cost</h2>
+
+<img data-src="./images/autoscale5.png" class="r-stretch"></section>
+<section id="step-1-start-a-crew-controller" class="slide level2">
+<h2>Step 1: start a <code>crew</code> controller</h2>
+<p><br></p>
+<div style="font-size:150%">
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># Start a controller.</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="fu">library</span>(crew)</span>
 <span id="cb1-3"><a href="#cb1-3"></a>controller <span class="ot">&lt;-</span> <span class="fu">crew_controller_local</span>(</span>
 <span id="cb1-4"><a href="#cb1-4"></a>  <span class="at">workers =</span> <span class="dv">2</span>,</span>
 <span id="cb1-5"><a href="#cb1-5"></a>  <span class="at">seconds_idle =</span> <span class="dv">10</span></span>
 <span id="cb1-6"><a href="#cb1-6"></a>)</span>
-<span id="cb1-7"><a href="#cb1-7"></a>controller<span class="sc">$</span><span class="fu">start</span>()</span>
-<span id="cb1-8"><a href="#cb1-8"></a></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co"># Submit tasks asynchronously.</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a>controller<span class="sc">$</span><span class="fu">push</span>(<span class="at">command =</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>controller<span class="sc">$</span><span class="fu">push</span>(<span class="at">command =</span> <span class="fu">sqrt</span>(<span class="dv">9</span>))</span>
-<span id="cb1-12"><a href="#cb1-12"></a></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co"># Wait for a task to finish.</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a>controller<span class="sc">$</span><span class="fu">wait</span>(<span class="at">mode =</span> <span class="st">"one"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15"></a></span>
-<span id="cb1-16"><a href="#cb1-16"></a><span class="co"># Collect the result.</span></span>
-<span id="cb1-17"><a href="#cb1-17"></a>controller<span class="sc">$</span><span class="fu">pop</span>()<span class="sc">$</span>result[[<span class="dv">1</span>]]</span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="co">#&gt; [1] 3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:25%;">
-<p><img src="./images/crew.png"></p>
+<span id="cb1-7"><a href="#cb1-7"></a>controller<span class="sc">$</span><span class="fu">start</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="step-2-push-tasks" class="slide level2">
+<h2>Step 2: push tasks</h2>
+<p><br></p>
+<div style="font-size:150%">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>controller<span class="sc">$</span><span class="fu">push</span>(<span class="at">command =</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>)</span>
+<span id="cb2-2"><a href="#cb2-2"></a>controller<span class="sc">$</span><span class="fu">push</span>(<span class="at">command =</span> <span class="fu">sqrt</span>(<span class="dv">9</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="step-3-collect-results" class="slide level2">
+<h2>Step 3: Collect results</h2>
+<p><br></p>
+<div style="font-size:150%">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Collect the result.</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>controller<span class="sc">$</span><span class="fu">pop</span>()<span class="sc">$</span>result[[<span class="dv">1</span>]] <span class="co"># from sqrt(9)</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; [1] 3</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>controller<span class="sc">$</span><span class="fu">pop</span>()<span class="sc">$</span>result[[<span class="dv">1</span>]] <span class="co"># from 1 + 1</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">#&gt; [1] 2</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a>controller<span class="sc">$</span><span class="fu">pop</span>()<span class="sc">$</span>result[[<span class="dv">1</span>]] <span class="co"># no more results </span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; NULL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="aws-batch-plugin" class="slide level2">
 <h2>AWS Batch plugin</h2>
-<div class="columns" style="font-size:95%">
+<div class="columns" style="font-size:125%">
 <div class="column" style="width:75%;">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Start an AWS Batch controller with many workers.</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(crew.aws.batch)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>controller <span class="ot">&lt;-</span> <span class="fu">crew_controller_aws_batch</span>(</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">workers =</span> <span class="dv">100</span>,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">seconds_idle =</span> <span class="dv">60</span>,</span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="at">aws_batch_job_definition =</span> <span class="st">"YOUR_JOB_DEFINITION"</span>,</span>
-<span id="cb2-7"><a href="#cb2-7"></a>  <span class="at">aws_batch_job_queue =</span> <span class="st">"YOUR_JOB_QUEUE"</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a>)</span>
-<span id="cb2-9"><a href="#cb2-9"></a>controller<span class="sc">$</span><span class="fu">start</span>()</span>
-<span id="cb2-10"><a href="#cb2-10"></a></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># Submit many tasks asynchronously.</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>controller<span class="sc">$</span><span class="fu">walk</span>(</span>
-<span id="cb2-13"><a href="#cb2-13"></a>  <span class="at">command =</span> <span class="fu">your_expensive_task</span>(<span class="at">data =</span> object),</span>
-<span id="cb2-14"><a href="#cb2-14"></a>  <span class="at">iterate =</span> <span class="fu">list</span>(<span class="at">object =</span> list_of_objects),</span>
-<span id="cb2-15"><a href="#cb2-15"></a>  <span class="at">data =</span> <span class="fu">list</span>(<span class="at">expensive_task =</span> expensive_task)</span>
-<span id="cb2-16"><a href="#cb2-16"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">crew_controller_aws_batch</span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="at">workers =</span> <span class="dv">100</span>,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="at">seconds_idle =</span> <span class="dv">60</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:25%;">
 <p><img src="./images/crew.aws.batch.png"></p>
 </div>
@@ -511,86 +530,42 @@ Charlie Gao and Will Landau
 </section>
 <section id="crew-with-shiny" class="slide level2">
 <h2><code>crew</code> with Shiny</h2>
-<iframe data-external="1" src="https://player.vimeo.com/video/927130003" width="100%" height="85%" frameborder="0" allow="autoplay; title=" "="" fullscreen;="" picture-in-picture"="" allowfullscreen=""></iframe>
-</section>
-<section id="extended-tasks-and-crew-promises" class="slide level2">
-<h2>Extended tasks and <code>crew</code> promises</h2>
 <p><br></p>
-<div class="columns" style="font-size: 80%">
-<div class="column" style="width:43%;">
-<h3 id="ui">UI</h3>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">fluidPage</span>(</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">actionButton</span>(</span>
-<span id="cb3-3"><a href="#cb3-3"></a>    <span class="st">"task"</span>,</span>
-<span id="cb3-4"><a href="#cb3-4"></a>    <span class="st">"Submit a task (5 seconds)"</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>  ),</span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">textOutput</span>(<span class="st">"status"</span>),</span>
-<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">plotOutput</span>(<span class="st">"result"</span>)</span>
-<span id="cb3-8"><a href="#cb3-8"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:57%;">
-<h3 id="server">Server</h3>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Shiny extended task with a {crew} promise:</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>task <span class="ot">&lt;-</span> ExtendedTask<span class="sc">$</span><span class="fu">new</span>(</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="cf">function</span>() controller<span class="sc">$</span><span class="fu">promise</span>(<span class="at">mode =</span> <span class="st">"one"</span>)</span>
-<span id="cb4-4"><a href="#cb4-4"></a>)</span>
-<span id="cb4-5"><a href="#cb4-5"></a></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="co"># Invoke the extended task on push.</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>task, {</span>
-<span id="cb4-8"><a href="#cb4-8"></a>  controller<span class="sc">$</span><span class="fu">push</span>(</span>
-<span id="cb4-9"><a href="#cb4-9"></a>    <span class="at">command =</span> <span class="fu">run_task</span>(),</span>
-<span id="cb4-10"><a href="#cb4-10"></a>    <span class="at">data =</span> <span class="fu">list</span>(<span class="at">run_task =</span> run_task)</span>
-<span id="cb4-11"><a href="#cb4-11"></a>  )</span>
-<span id="cb4-12"><a href="#cb4-12"></a>  task<span class="sc">$</span><span class="fu">invoke</span>()</span>
-<span id="cb4-13"><a href="#cb4-13"></a>})</span>
-<span id="cb4-14"><a href="#cb4-14"></a></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="co"># Get results from the extended task.</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a>output<span class="sc">$</span>result <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>(</span>
-<span id="cb4-17"><a href="#cb4-17"></a>  task<span class="sc">$</span><span class="fu">result</span>()<span class="sc">$</span>result[[<span class="dv">1</span>]]</span>
-<span id="cb4-18"><a href="#cb4-18"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div style="font-size:125%">
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>extended <span class="ot">&lt;-</span> ExtendedTask<span class="sc">$</span><span class="fu">new</span>(<span class="at">func =</span> identity)</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, {</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  extended<span class="sc">$</span><span class="fu">invoke</span>(controller<span class="sc">$</span><span class="fu">push</span>(<span class="fu">run_task</span>(), ...))</span>
+<span id="cb5-5"><a href="#cb5-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><br></p>
+<div>
+<ul>
+<li><code>mirai</code> + <code>promises</code> integration and Shiny extended tasks.</li>
+</ul>
 </div>
+</section>
+<section id="tasks-to-not-block-the-app" class="slide level2">
+<h2>Tasks to not block the app</h2>
+<iframe data-external="1" src="https://player.vimeo.com/video/927130003" width="100%" height="85%" frameborder="0" allow="autoplay; title=" "="" fullscreen;="" picture-in-picture"="" allowfullscreen=""></iframe>
+<p>::::</p>
 </section>
 <section id="crew-with-targets" class="slide level2">
 <h2><code>crew</code> with <code>targets</code></h2>
-<div class="columns" style="font-size: 80%">
-<div class="column" style="width:55%;">
-<h3 id="targets.r-file"><code>_targets.R</code> file</h3>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(targets)</span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">library</span>(crew.aws.batch)</span>
-<span id="cb5-3"><a href="#cb5-3"></a>batch <span class="ot">&lt;-</span> <span class="fu">crew_controller_aws_batch</span>(<span class="st">"..."</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="fu">tar_option_set</span>(</span>
-<span id="cb5-6"><a href="#cb5-6"></a>  <span class="co"># For AWS Batch:</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a>  <span class="at">controller =</span> batch,</span>
-<span id="cb5-8"><a href="#cb5-8"></a>  </span>
-<span id="cb5-9"><a href="#cb5-9"></a>  <span class="co"># For AWS S3:</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>  <span class="at">repository =</span> <span class="st">"aws"</span>,</span>
-<span id="cb5-11"><a href="#cb5-11"></a>  <span class="at">resources =</span> <span class="fu">tar_resources</span>(<span class="at">aws =</span> <span class="st">"..."</span>)</span>
-<span id="cb5-12"><a href="#cb5-12"></a>)</span>
-<span id="cb5-13"><a href="#cb5-13"></a></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="fu">tar_source</span>()</span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="fu">list</span>(</span>
-<span id="cb5-16"><a href="#cb5-16"></a>  <span class="fu">tar_target</span>(data, <span class="fu">get_data</span>()),</span>
-<span id="cb5-17"><a href="#cb5-17"></a>  <span class="co"># ...</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div><div class="column" style="width:45%;">
-<h3 id="dependency-graph">Dependency graph</h3>
+<p><br></p>
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <div>
-<pre class="mermaid mermaid-js">graph TB
-  direction TB
+<pre class="mermaid mermaid-js">graph LR
+  direction LR
   x0b88dc07a3d2db7d(["model_covariates"]):::outdated --&gt; x2f9fc018ab703ad9(["summary_covariates"]):::outdated
   xb7119b48552d1da3(["data"]):::outdated --&gt; x0cdc9665e00a10da(["model_interactions"]):::outdated
-  xb7119b48552d1da3(["data"]):::outdated --&gt; xbb787cf099f745bb(["model_simple"]):::outdated
   x0cdc9665e00a10da(["model_interactions"]):::outdated --&gt; xe1021174c85186bb(["summary_interactions"]):::outdated
   x2f9fc018ab703ad9(["summary_covariates"]):::outdated --&gt; x86c744fee9e9e798(["compare_models"]):::outdated
   xe1021174c85186bb(["summary_interactions"]):::outdated --&gt; x86c744fee9e9e798(["compare_models"]):::outdated
-  x0c03b9a838de70e1(["summary_simple"]):::outdated --&gt; x86c744fee9e9e798(["compare_models"]):::outdated
   x86c744fee9e9e798(["compare_models"]):::outdated --&gt; x34784fce8899e1b4(["quarto_report"]):::outdated
   xb7119b48552d1da3(["data"]):::outdated --&gt; x0b88dc07a3d2db7d(["model_covariates"]):::outdated
-  xbb787cf099f745bb(["model_simple"]):::outdated --&gt; x0c03b9a838de70e1(["summary_simple"]):::outdated
   classDef outdated stroke:#000000,color:#000000,fill:#78B7C5;
   classDef none stroke:#000000,color:#000000,fill:#94a4ac;
 </pre>
@@ -598,8 +573,13 @@ Charlie Gao and Will Landau
 </div>
 </div>
 </div>
-</div>
-</div>
+<p><br></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">tar_option_set</span>(</span>
+<span id="cb6-2"><a href="#cb6-2"></a>  <span class="at">controller =</span> <span class="fu">crew_controller_aws_batch</span>(</span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">workers =</span> <span class="dv">100</span>,</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    ...</span>
+<span id="cb6-5"><a href="#cb6-5"></a>  )</span>
+<span id="cb6-6"><a href="#cb6-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="footer footer-default">
 <p>© 2024 Hikbiki AI Limited, Eli Lilly and Company</p>
 </div>
