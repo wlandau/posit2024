@@ -535,8 +535,10 @@ Charlie Gao and Will Landau
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>extended <span class="ot">&lt;-</span> ExtendedTask<span class="sc">$</span><span class="fu">new</span>(<span class="at">func =</span> identity)</span>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, {</span>
-<span id="cb5-4"><a href="#cb5-4"></a>  extended<span class="sc">$</span><span class="fu">invoke</span>(controller<span class="sc">$</span><span class="fu">push</span>(<span class="fu">run_task</span>(), ...))</span>
-<span id="cb5-5"><a href="#cb5-5"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a href="#cb5-4"></a>  extended<span class="sc">$</span><span class="fu">invoke</span>(</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    controller<span class="sc">$</span><span class="fu">push</span>(<span class="fu">run_task</span>(), ...)</span>
+<span id="cb5-6"><a href="#cb5-6"></a>  )</span>
+<span id="cb5-7"><a href="#cb5-7"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 <div>

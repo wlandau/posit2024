@@ -183,7 +183,9 @@ crew_controller_aws_batch(
 extended <- ExtendedTask$new(func = identity)
 
 observeEvent(input$button, {
-  extended$invoke(controller$push(run_task(), ...))
+  extended$invoke(
+    controller$push(run_task(), ...)
+  )
 })
 ```
 
