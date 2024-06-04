@@ -61,11 +61,11 @@ knitr::opts_chunk$set(
 </center>
 
 * Heavy computation: machine learning, Bayesian data analysis, genomics, simulation
-* High-performance computing is
+* High-performance computing is:
     1. Expensive.
     2. Difficult to access from R.
 
-## `crew` helps data science scale
+## `crew` helps data science scale.
 
 <center>
 <img src="./images/plugins.png" width=700>
@@ -75,27 +75,27 @@ knitr::opts_chunk$set(
 2. Auto-scales to reduce cost and overhead.
 3. Flexible plugin system for high-performance computing platforms.
 
-## Auto-scaling reduces overhead & cost
+## Auto-scaling reduces overhead & cost.
 
 ![](./images/autoscale1.png)
 
-## Auto-scaling reduces overhead & cost
+## Auto-scaling reduces overhead & cost.
 
 ![](./images/autoscale2.png)
 
-## Auto-scaling reduces overhead & cost
+## Auto-scaling reduces overhead & cost.
 
 ![](./images/autoscale3.png)
 
-## Auto-scaling reduces overhead & cost
+## Auto-scaling reduces overhead & cost.
 
 ![](./images/autoscale4.png)
 
-## Auto-scaling reduces overhead & cost
+## Auto-scaling reduces overhead & cost.
 
 ![](./images/autoscale5.png)
 
-## Step 1: start a `crew` controller
+## Step 1: start a `crew` controller.
 
 <br>
 
@@ -113,7 +113,7 @@ controller$start()
 
 ::::
 
-## Step 2: push tasks
+## Step 2: push tasks.
 
 <br>
 
@@ -121,12 +121,13 @@ controller$start()
 
 ```r
 controller$push(command = 1 + 1)
+
 controller$push(command = sqrt(9))
 ```
 
 ::::
 
-## Step 3: Collect results
+## Step 3: Collect results.
 
 <br>
 
@@ -197,7 +198,7 @@ observeEvent(input$button, {
 
 ::::
 
-## Tasks to not block the app
+## Tasks to not block the app.
 
 {{< video https://vimeo.com/927130003  width="100%" height="85%" >}}
 
