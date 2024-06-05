@@ -530,28 +530,17 @@ Charlie Gao and Will Landau
 </section>
 <section id="crew-with-shiny" class="slide level2">
 <h2><code>crew</code> with Shiny</h2>
-<p><br></p>
-<div style="font-size:125%">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>extended <span class="ot">&lt;-</span> ExtendedTask<span class="sc">$</span><span class="fu">new</span>(<span class="at">func =</span> identity)</span>
+<div class="columns" style="font-size:130%">
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, controller<span class="sc">$</span><span class="fu">walk</span>(...))</span>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, {</span>
-<span id="cb5-4"><a href="#cb5-4"></a>  extended<span class="sc">$</span><span class="fu">invoke</span>(</span>
-<span id="cb5-5"><a href="#cb5-5"></a>    controller<span class="sc">$</span><span class="fu">push</span>(<span class="fu">run_task</span>(), ...)</span>
-<span id="cb5-6"><a href="#cb5-6"></a>  )</span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">observe</span>({</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">invalidateLater</span>(<span class="at">millis =</span> <span class="dv">500</span>)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>  results <span class="ot">&lt;-</span> controller<span class="sc">$</span><span class="fu">collect</span>(<span class="at">error =</span> <span class="st">"stop"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6"></a>  ...</span>
 <span id="cb5-7"><a href="#cb5-7"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
-<div>
-<ul>
-<li><code>mirai</code> + <code>promises</code> integration and Shiny extended tasks.</li>
-</ul>
-</div>
-</section>
-<section id="tasks-to-not-block-the-app." class="slide level2">
-<h2>Tasks to not block the app.</h2>
-<iframe data-external="1" src="https://player.vimeo.com/video/927130003" width="100%" height="85%" frameborder="0" allow="autoplay; title=" "="" fullscreen;="" picture-in-picture"="" allowfullscreen=""></iframe>
-<p>::::</p>
-</section>
+
+<img data-src="./images/app.gif" class="r-stretch"></section>
 <section id="crew-with-targets" class="slide level2">
 <h2><code>crew</code> with <code>targets</code></h2>
 <p><br></p>

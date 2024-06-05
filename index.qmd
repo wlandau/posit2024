@@ -175,35 +175,21 @@ crew_controller_aws_batch(
 
 ## `crew` with Shiny
 
-<br>
-
-:::: {style="font-size:125%"}
+:::: {.columns style="font-size:130%"}
 
 ```r
-extended <- ExtendedTask$new(func = identity)
+observeEvent(input$button, controller$walk(...))
 
-observeEvent(input$button, {
-  extended$invoke(
-    controller$push(run_task(), ...)
-  )
+observe({
+  invalidateLater(millis = 500)
+  results <- controller$collect(error = "stop")
+  ...
 })
 ```
 
 ::::
 
-<br>
-
-:::: {.nonincremental}
-
-* `mirai` + `promises` integration and Shiny extended tasks.
-
-::::
-
-## Tasks to not block the app.
-
-{{< video https://vimeo.com/927130003  width="100%" height="85%" >}}
-
-::::
+![](./images/app.gif)
 
 ## `crew` with `targets`
 
