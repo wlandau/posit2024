@@ -211,11 +211,18 @@ graph LR
 
 <br>
 
+:::: {.columns style="font-size:115%"}
+
 ```r
 tar_option_set(
   controller = crew_controller_aws_batch(
     workers = 100,
+    seconds_idle = 120,
+    aws_batch_job_definition = "DEF",
+    aws_batch_job_queue = "QUEUE",
     ...
   )
 )
 ```
+
+::::

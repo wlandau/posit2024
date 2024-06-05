@@ -565,12 +565,17 @@ Charlie Gao and Will Landau
 </div>
 </div>
 <p><br></p>
+<div class="columns" style="font-size:115%">
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">tar_option_set</span>(</span>
 <span id="cb6-2"><a href="#cb6-2"></a>  <span class="at">controller =</span> <span class="fu">crew_controller_aws_batch</span>(</span>
 <span id="cb6-3"><a href="#cb6-3"></a>    <span class="at">workers =</span> <span class="dv">100</span>,</span>
-<span id="cb6-4"><a href="#cb6-4"></a>    ...</span>
-<span id="cb6-5"><a href="#cb6-5"></a>  )</span>
-<span id="cb6-6"><a href="#cb6-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a href="#cb6-4"></a>    <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span>,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    ...</span>
+<span id="cb6-8"><a href="#cb6-8"></a>  )</span>
+<span id="cb6-9"><a href="#cb6-9"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="footer footer-default">
 <p>© 2024 Hikbiki AI Limited, Eli Lilly and Company</p>
 </div>
