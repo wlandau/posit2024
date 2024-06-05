@@ -178,18 +178,17 @@ crew_controller_aws_batch(
 :::: {.columns style="font-size:130%"}
 
 ```r
-observeEvent(input$button, controller$walk(...))
-
-observe({
-  invalidateLater(millis = 500)
-  results <- controller$collect(error = "stop")
-  ...
+observeEvent(input$button, {
+  replicate(1000, 
+    controller$push(flip_coin(), ...) %...>%
+      collect_flips(controller, ...)
+  )
 })
 ```
 
 ::::
 
-![](./images/app.gif)
+![](./images/coin-flips.gif)
 
 ## `crew` accelerates `targets`
 

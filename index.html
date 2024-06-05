@@ -531,16 +531,15 @@ Charlie Gao and Will Landau
 <section id="crew-unblocks-shiny-apps" class="slide level2">
 <h2><code>crew</code> unblocks Shiny apps</h2>
 <div class="columns" style="font-size:130%">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, controller<span class="sc">$</span><span class="fu">walk</span>(...))</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">observe</span>({</span>
-<span id="cb5-4"><a href="#cb5-4"></a>  <span class="fu">invalidateLater</span>(<span class="at">millis =</span> <span class="dv">500</span>)</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  results <span class="ot">&lt;-</span> controller<span class="sc">$</span><span class="fu">collect</span>(<span class="at">error =</span> <span class="st">"stop"</span>)</span>
-<span id="cb5-6"><a href="#cb5-6"></a>  ...</span>
-<span id="cb5-7"><a href="#cb5-7"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, {</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">replicate</span>(<span class="dv">1000</span>, </span>
+<span id="cb5-3"><a href="#cb5-3"></a>    controller<span class="sc">$</span><span class="fu">push</span>(<span class="fu">flip_coin</span>(), ...) <span class="sc">%...&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>      <span class="fu">collect_flips</span>(controller, ...)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>  )</span>
+<span id="cb5-6"><a href="#cb5-6"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="./images/app.gif" class="r-stretch"></section>
+<img data-src="./images/coin-flips.gif" class="r-stretch"></section>
 <section id="crew-accelerates-targets" class="slide level2">
 <h2><code>crew</code> accelerates <code>targets</code></h2>
 <p><br></p>
