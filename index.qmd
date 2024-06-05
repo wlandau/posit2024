@@ -127,7 +127,7 @@ controller$push(command = sqrt(9))
 
 ::::
 
-## Step 3: Collect results.
+## Step 3: collect results.
 
 <br>
 
