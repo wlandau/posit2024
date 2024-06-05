@@ -173,7 +173,7 @@ crew_controller_aws_batch(
 
 ::::
 
-## `crew` with Shiny
+## `crew` unblocks Shiny apps
 
 :::: {.columns style="font-size:130%"}
 
@@ -191,7 +191,7 @@ observe({
 
 ![](./images/app.gif)
 
-## `crew` with `targets`
+## `crew` accelerates `targets`
 
 <br>
 
