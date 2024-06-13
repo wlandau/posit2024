@@ -123,7 +123,7 @@ knitr::opts_chunk$set(
 
 ![](./images/autoscale6.png)
 
-## R6 controller interface
+## Simple controller interface
 
 <br>
 
@@ -131,15 +131,38 @@ knitr::opts_chunk$set(
 
 ```r
 # New controller
+
 controller <- crew_controller_local(
   workers = 2,
   seconds_idle = 10
 )
+```
 
+::::
+
+## Simple controller interface
+
+<br>
+
+:::: {style="font-size:150%"}
+
+```r
 # Submit a task.
-controller$push(1 + 1)
 
+controller$push(1 + 1)
+```
+
+::::
+
+## Simple controller interface
+
+<br>
+
+:::: {style="font-size:150%"}
+
+```r
 # Get the result.
+
 controller$pop()
 ```
 

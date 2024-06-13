@@ -489,21 +489,34 @@ Charlie Gao and Will Landau
 <h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b>.</h2>
 
 <img data-src="./images/autoscale6.png" class="r-stretch"></section>
-<section id="r6-controller-interface" class="slide level2">
-<h2>R6 controller interface</h2>
+<section id="simple-controller-interface" class="slide level2">
+<h2>Simple controller interface</h2>
 <p><br></p>
 <div style="font-size:150%">
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># New controller</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a>controller <span class="ot">&lt;-</span> <span class="fu">crew_controller_local</span>(</span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="at">workers =</span> <span class="dv">2</span>,</span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="at">seconds_idle =</span> <span class="dv">10</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>)</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co"># Submit a task.</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>controller<span class="sc">$</span><span class="fu">push</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>)</span>
-<span id="cb1-9"><a href="#cb1-9"></a></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="co"># Get the result.</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a>controller<span class="sc">$</span><span class="fu">pop</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>controller <span class="ot">&lt;-</span> <span class="fu">crew_controller_local</span>(</span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="at">workers =</span> <span class="dv">2</span>,</span>
+<span id="cb1-5"><a href="#cb1-5"></a>  <span class="at">seconds_idle =</span> <span class="dv">10</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="simple-controller-interface-1" class="slide level2">
+<h2>Simple controller interface</h2>
+<p><br></p>
+<div style="font-size:150%">
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Submit a task.</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>controller<span class="sc">$</span><span class="fu">push</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="simple-controller-interface-2" class="slide level2">
+<h2>Simple controller interface</h2>
+<p><br></p>
+<div style="font-size:150%">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Get the result.</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>controller<span class="sc">$</span><span class="fu">pop</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="aws-batch-plugin" class="slide level2">
@@ -511,12 +524,12 @@ Charlie Gao and Will Landau
 <div class="columns" style="font-size:125%">
 <div class="column" style="width:75%;">
 <p><br></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">crew_controller_aws_batch</span>(</span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="at">workers =</span> <span class="dv">100</span>,</span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="at">seconds_idle =</span> <span class="dv">60</span>,</span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">crew_controller_aws_batch</span>(</span>
+<span id="cb4-2"><a href="#cb4-2"></a>  <span class="at">workers =</span> <span class="dv">100</span>,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="at">seconds_idle =</span> <span class="dv">60</span>,</span>
+<span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:25%;">
 <p><img src="./images/crew.aws.batch.png"></p>
 </div>
@@ -529,12 +542,12 @@ Charlie Gao and Will Landau
 <section id="crew-unblocks-shiny-apps." class="slide level2">
 <h2><code>crew</code> unblocks Shiny apps.</h2>
 <div class="columns" style="font-size:130%">
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, {</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">replicate</span>(<span class="dv">1000</span>, </span>
-<span id="cb3-3"><a href="#cb3-3"></a>    controller<span class="sc">$</span><span class="fu">push</span>(<span class="fu">flip_coin</span>(), ...) <span class="sc">%...&gt;%</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>      <span class="fu">collect_flips</span>(controller, ...)</span>
-<span id="cb3-5"><a href="#cb3-5"></a>  )</span>
-<span id="cb3-6"><a href="#cb3-6"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, {</span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">replicate</span>(<span class="dv">1000</span>, </span>
+<span id="cb5-3"><a href="#cb5-3"></a>    controller<span class="sc">$</span><span class="fu">push</span>(<span class="fu">flip_coin</span>(), ...) <span class="sc">%...&gt;%</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a>      <span class="fu">collect_flips</span>(controller, ...)</span>
+<span id="cb5-5"><a href="#cb5-5"></a>  )</span>
+<span id="cb5-6"><a href="#cb5-6"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img data-src="./images/coin-flips.gif" class="r-stretch"></section>
@@ -542,16 +555,16 @@ Charlie Gao and Will Landau
 <h2><code>crew</code> accelerates <code>targets</code></h2>
 <p><br></p>
 <div class="columns" style="font-size:115%">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">#_targets.R file</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">tar_option_set</span>(</span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">controller =</span> <span class="fu">crew_controller_aws_batch</span>(</span>
-<span id="cb4-5"><a href="#cb4-5"></a>    <span class="at">workers =</span> <span class="dv">100</span>,</span>
-<span id="cb4-6"><a href="#cb4-6"></a>    <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
-<span id="cb4-7"><a href="#cb4-7"></a>    <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
-<span id="cb4-8"><a href="#cb4-8"></a>    <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a>  )</span>
-<span id="cb4-10"><a href="#cb4-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#_targets.R file</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">tar_option_set</span>(</span>
+<span id="cb6-4"><a href="#cb6-4"></a>  <span class="at">controller =</span> <span class="fu">crew_controller_aws_batch</span>(</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">workers =</span> <span class="dv">100</span>,</span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
+<span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
+<span id="cb6-8"><a href="#cb6-8"></a>    <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>  )</span>
+<span id="cb6-10"><a href="#cb6-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="footer footer-default">
 <p>© 2024 Hikbiki AI Limited, Eli Lilly and Company</p>
