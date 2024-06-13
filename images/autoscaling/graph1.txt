@@ -1,0 +1,15 @@
+graph LR
+  style Graph fill:#FFFFFF00,color:#FFFFFF00,stroke:none;
+  subgraph Graph
+    direction LR
+    prep("prep"):::waiting --> data1(["data1"]):::waiting
+    prep("prep"):::waiting --> data2(["data2"]):::waiting
+    data1("data1"):::waiting --> model1(["model1"]):::waiting
+    data2("data2"):::waiting --> model2(["model2"]):::waiting
+    model1("model1"):::waiting --> predict1("predict1"):::waiting
+    model2("model2"):::waiting --> predict2("predict2"):::waiting
+    predict1("predict1"):::waiting --> results("results"):::waiting
+    predict2("predict2"):::waiting --> results("results"):::waiting
+  end
+  classDef waiting stroke:none,color:#000000,fill:#78B7C5;
+  classDef running stroke:none,color:#000000,fill:#FFA500;

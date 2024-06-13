@@ -95,77 +95,52 @@ knitr::opts_chunk$set(
 
 ![](./images/plugins.png)
 
-1. Low-<b><span style="color:brown">overhead</span></b> interprocess communication with **`mirai`**.
+1. Low-<b><span style="color:brown">overhead</span></b> interprocess communication with `mirai`.
 2. Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b>.
 3. Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems.
 
-## Auto-scaling reduces overhead & cost.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
 
 ![](./images/autoscale1.png)
 
-## Auto-scaling reduces overhead & cost.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
 
 ![](./images/autoscale2.png)
 
-## Auto-scaling reduces overhead & cost.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
 
 ![](./images/autoscale3.png)
 
-## Auto-scaling reduces overhead & cost.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
 
 ![](./images/autoscale4.png)
 
-## Auto-scaling reduces overhead & cost.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
 
 ![](./images/autoscale5.png)
 
-## Step 1: start a `crew` controller.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+
+![](./images/autoscale6.png)
+
+## R6 controller interface
 
 <br>
 
 :::: {style="font-size:150%"}
 
 ```r
-# Start a controller.
-library(crew)
+# New controller
 controller <- crew_controller_local(
   workers = 2,
   seconds_idle = 10
 )
-controller$start()
-```
 
-::::
+# Submit a task.
+controller$push(1 + 1)
 
-## Step 2: push tasks.
-
-<br>
-
-:::: {style="font-size:150%"}
-
-```r
-controller$push(command = 1 + 1)
-
-controller$push(command = sqrt(9))
-```
-
-::::
-
-## Step 3: collect results.
-
-<br>
-
-:::: {style="font-size:150%"}
-
-```r
-controller$pop()$result[[1]] # from sqrt(9)
-#> [1] 3
-
-controller$pop()$result[[1]] # from 1 + 1
-#> [1] 2
-
-controller$pop()$result[[1]] # no more results 
-#> NULL
+# Get the result.
+controller$pop()
 ```
 
 ::::
@@ -186,7 +161,6 @@ crew_controller_aws_batch(
   aws_batch_job_queue = "QUEUE"
 )
 ```
-
 :::
 
 ::: {.column width="25%"}
@@ -197,7 +171,11 @@ crew_controller_aws_batch(
 
 ::::
 
-## `crew` unblocks Shiny apps
+<br>
+
+* Write your own plugins: <https://wlandau.github.io/crew/articles/plugins.html>
+
+## `crew` unblocks Shiny apps.
 
 :::: {.columns style="font-size:130%"}
 
@@ -218,32 +196,17 @@ observeEvent(input$button, {
 
 <br>
 
-```{mermaid}
-graph LR
-  direction LR
-  x0b88dc07a3d2db7d(["model_covariates"]):::outdated --> x2f9fc018ab703ad9(["summary_covariates"]):::outdated
-  xb7119b48552d1da3(["data"]):::outdated --> x0cdc9665e00a10da(["model_interactions"]):::outdated
-  x0cdc9665e00a10da(["model_interactions"]):::outdated --> xe1021174c85186bb(["summary_interactions"]):::outdated
-  x2f9fc018ab703ad9(["summary_covariates"]):::outdated --> x86c744fee9e9e798(["compare_models"]):::outdated
-  xe1021174c85186bb(["summary_interactions"]):::outdated --> x86c744fee9e9e798(["compare_models"]):::outdated
-  x86c744fee9e9e798(["compare_models"]):::outdated --> x34784fce8899e1b4(["quarto_report"]):::outdated
-  xb7119b48552d1da3(["data"]):::outdated --> x0b88dc07a3d2db7d(["model_covariates"]):::outdated
-  classDef outdated stroke:#000000,color:#000000,fill:#78B7C5;
-  classDef none stroke:#000000,color:#000000,fill:#94a4ac;
-```
-
-<br>
-
 :::: {.columns style="font-size:115%"}
 
 ```r
+#_targets.R file
+
 tar_option_set(
   controller = crew_controller_aws_batch(
     workers = 100,
     seconds_idle = 120,
     aws_batch_job_definition = "DEF",
-    aws_batch_job_queue = "QUEUE",
-    ...
+    aws_batch_job_queue = "QUEUE"
   )
 )
 ```

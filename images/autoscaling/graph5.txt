@@ -1,0 +1,9 @@
+graph LR
+  style Graph fill:#FFFFFF00,color:#FFFFFF00,stroke:none;
+  subgraph Graph
+    direction LR
+    results("results"):::running --> results("results"):::running
+  end
+  classDef waiting stroke:none,color:#000000,fill:#78B7C5;
+  classDef running stroke:none,color:#000000,fill:#FFA500;
+  linkStyle 0 stroke:none;
