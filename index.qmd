@@ -215,7 +215,7 @@ observeEvent(input$button, {
 
 ![](./images/coin-flips.gif)
 
-## `crew` accelerates `targets`
+## `crew` accelerates `targets`.
 
 <br>
 
