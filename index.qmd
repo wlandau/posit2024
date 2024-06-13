@@ -48,32 +48,56 @@ knitr::opts_chunk$set(
 <img src="./images/mirai.png">
 </center>
 
-## 
+## Extending {mirai}
 
 <center>
 <img src="./images/crew.png">
 </center>
 
-## Data science is demanding
+## Science demands heavy computing.
 
 <center>
-<img src="./images/workload-horizontal.png" width=700>
+<img src="./images/pipette.jpg" width=500>
 </center>
 
-* Heavy computation: machine learning, Bayesian data analysis, genomics, simulation
-* High-performance computing is:
-    1. Expensive.
-    2. Difficult to access from R.
+::: {style="font-size:90%"}
 
-## `crew` helps data science scale.
+* Bayesian methods help safety/efficacy decisions in clinical trials.
+* Each model could take hours to run.
+* 1000+ simulations to design a clinical trial.
 
-<center>
-<img src="./images/plugins.png" width=700>
-</center>
+:::
 
-1. Leverages the speed of `mirai`.
-2. Auto-scales to reduce cost and overhead.
-3. Flexible plugin system for high-performance computing platforms.
+## Too much work for one laptop
+
+:::: {.columns}
+
+::: {.column width="50%"}
+
+![](./images/hpc1.jpg)
+
+:::
+
+::: {.column width="50%"}
+
+![](./images/hpc2.jpg)
+
+:::
+
+::::
+
+* Clinical trial simulations often need hundreds of computers.
+* Need distributed computing: e.g. SLURM clusters, AWS Batch
+* Challenges: <b><span style="color:blue">access</span></b>, <b><span style="color:brown">overhead</span></b>, and <b><span style="color:darkGreen">cost</span></b>.
+
+
+## `crew` scales data science.
+
+![](./images/plugins.png)
+
+1. Low-<b><span style="color:brown">overhead</span></b> interprocess communication with **`mirai`**.
+2. Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b>.
+3. Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems.
 
 ## Auto-scaling reduces overhead & cost.
 

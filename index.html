@@ -425,35 +425,47 @@ Charlie Gao and Will Landau
 <img src="./images/mirai.png">
 </center>
 </section>
-<section id="section-2" class="slide level2">
-<h2></h2>
+<section id="extending-mirai" class="slide level2">
+<h2>Extending {mirai}</h2>
 <center>
 <img src="./images/crew.png">
 </center>
 </section>
-<section id="data-science-is-demanding" class="slide level2">
-<h2>Data science is demanding</h2>
+<section id="science-demands-heavy-computing." class="slide level2">
+<h2>Science demands heavy computing.</h2>
 <center>
-<img src="./images/workload-horizontal.png" width="700">
+<img src="./images/pipette.jpg" width="500">
 </center>
+<div style="font-size:90%">
 <ul>
-<li class="fragment">Heavy computation: machine learning, Bayesian data analysis, genomics, simulation</li>
-<li class="fragment">High-performance computing is:
-<ol type="1">
-<li class="fragment">Expensive.</li>
-<li class="fragment">Difficult to access from R.</li>
-</ol></li>
+<li class="fragment">Bayesian methods help safety/efficacy decisions in clinical trials.</li>
+<li class="fragment">Each model could take hours to run.</li>
+<li class="fragment">1000+ simulations to design a clinical trial.</li>
+</ul>
+</div>
+</section>
+<section id="too-much-work-for-one-laptop" class="slide level2">
+<h2>Too much work for one laptop</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="./images/hpc1.jpg"></p>
+</div><div class="column" style="width:50%;">
+<p><img data-src="./images/hpc2.jpg"></p>
+</div>
+</div>
+<ul>
+<li class="fragment">Clinical trial simulations often need hundreds of computers.</li>
+<li class="fragment">Need distributed computing: e.g.&nbsp;SLURM clusters, AWS Batch</li>
+<li class="fragment">Challenges: <b><span style="color:blue">access</span></b>, <b><span style="color:brown">overhead</span></b>, and <b><span style="color:darkGreen">cost</span></b>.</li>
 </ul>
 </section>
-<section id="crew-helps-data-science-scale." class="slide level2">
-<h2><code>crew</code> helps data science scale.</h2>
-<center>
-<img src="./images/plugins.png" width="700">
-</center>
-<ol type="1">
-<li class="fragment">Leverages the speed of <code>mirai</code>.</li>
-<li class="fragment">Auto-scales to reduce cost and overhead.</li>
-<li class="fragment">Flexible plugin system for high-performance computing platforms.</li>
+<section id="crew-scales-data-science." class="slide level2">
+<h2><code>crew</code> scales data science.</h2>
+
+<img data-src="./images/plugins.png" class="r-stretch"><ol type="1">
+<li class="fragment">Low-<b><span style="color:brown">overhead</span></b> interprocess communication with <strong><code>mirai</code></strong>.</li>
+<li class="fragment">Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b>.</li>
+<li class="fragment">Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems.</li>
 </ol>
 </section>
 <section id="auto-scaling-reduces-overhead-cost." class="slide level2">
