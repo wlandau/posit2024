@@ -221,6 +221,8 @@ observeEvent(input$button, {
 
 :::: {.columns style="font-size:115%"}
 
+::: {.column width="75%"}
+
 ```r
 #_targets.R file
 
@@ -233,5 +235,13 @@ tar_option_set(
   )
 )
 ```
+
+:::
+
+::: {.column width="25%"}
+
+![](./images/targets.png)
+
+:::
 
 ::::
