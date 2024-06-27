@@ -95,9 +95,26 @@ knitr::opts_chunk$set(
 
 ![](./images/plugins.png)
 
-1. Low-<b><span style="color:brown">overhead</span></b> interprocess communication with `mirai`.
+1. `mirai` provides low-<b><span style="color:brown">overhead</span></b> interprocess communication.
 2. Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b>.
 3. Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems.
+
+## Low-<b><span style="color:brown">overhead</span></b> communication
+
+![](./images/workers1.png)
+
+## Low-<b><span style="color:brown">overhead</span></b> communication
+
+![](./images/workers2.png)
+
+## Low-<b><span style="color:brown">overhead</span></b> communication
+
+![](./images/workers3.png)
+
+## Low-<b><span style="color:brown">overhead</span></b> communication
+
+![](./images/workers4.png)
+
 
 ## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
 
