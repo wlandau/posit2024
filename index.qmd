@@ -3,7 +3,7 @@ format:
    revealjs:
      slide-number: true
      incremental: true
-     footer: "&copy; 2024 Hikbiki AI Limited, Eli Lilly and Company"
+     footer: "&copy; 2024 Hibiki AI Limited, Eli Lilly and Company"
      view-distance: 100
      mobile-view-distance: 100
 ---
@@ -36,19 +36,21 @@ knitr::opts_chunk$set(
 
 <center>
 <br>
-<h4>`mirai` and `crew`: next-generation async to supercharge `promises`, Plumber, Shiny, and `targets`</h4>
+<h3>mirai and crew: next-generation async to supercharge Plumber, Shiny, and targets</h3>
 <img src="./images/title.png" height="400px">
 <br>
 <h4>Charlie Gao and Will Landau</h4>
 </center>
 
-## 
+## mirai provides next generation async
 
-<center>
 <img src="./images/mirai.png">
-</center>
 
-## Extending {mirai}
+- completely event-driven 'promises'
+- zero-latency vs. 100ms latency
+- optimally efficient
+
+## Extending mirai
 
 <center>
 <img src="./images/crew.png">
