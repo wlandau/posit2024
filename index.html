@@ -417,14 +417,75 @@ Charlie Gao and Will Landau
 </h4>
 </center>
 </section>
-<section id="mirai-provides-next-generation-async" class="slide level2">
-<h2>mirai provides next generation async</h2>
-
-<img src="./images/mirai.png" class="r-stretch"><ul>
-<li class="fragment">completely event-driven ‘promises’</li>
-<li class="fragment">zero-latency vs.&nbsp;100ms latency</li>
-<li class="fragment">optimally efficient</li>
+<section id="what-is-next-generation-async" class="slide level2">
+<h2>What is next generation async?</h2>
+<p>In many modern languages, async is treated as a ‘first class’ citizen</p>
+<ul>
+<li class="fragment">Rust and ‘fearless concurrency’</li>
+<li class="fragment">Go and Goroutines</li>
 </ul>
+<div class="fragment">
+<p>R on the other hand:</p>
+<ul>
+<li class="fragment">{coro} for coroutines, not true parallelism</li>
+<li class="fragment">{callr} just for local machine, saves files on filesytem</li>
+<li class="fragment">{future} just an API, uses backend {parallelly}, not queued</li>
+</ul>
+</div>
+</section>
+<section id="bringing-first-class-async-to-r" class="slide level2">
+<h2>Bringing first class async to R</h2>
+<div>
+<p><img src="./images/nanonext.png" width="160" align="right"></p>
+<ul>
+<li>NNG is a C messaging library</li>
+<li>Incredibly lightweight, brokerless</li>
+<li>Own threaded concurrency framework</li>
+<li>{nanonext} brings NNG capabilities to R</li>
+</ul>
+<p><img src="./images/nng.png"></p>
+</div>
+</section>
+<section id="mirai" class="slide level2">
+<h2>mirai</h2>
+<div>
+<p><img src="./images/mirai.png" width="160" align="right"></p>
+<p>ミライ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / mI ˈ ra ˈ i: / n.&nbsp;future</p>
+<p>Minimalist Async Evaluation Framework for R</p>
+<ul>
+<li>Built on nanonext (single dependency)</li>
+<li>Reduces round-trip task resolution from milliseconds to microseconds</li>
+<li>Designed for production and validated by heavy-duty usage in life sciences industry</li>
+</ul>
+</div>
+</section>
+<section id="the-current-generation-of-promises" class="slide level2">
+<h2>The current generation of promises</h2>
+<ul>
+<li class="fragment"><code>future_promise()</code> has never exited ‘experimental’ status</li>
+<li class="fragment">Requires constant polling for resolution of each promises</li>
+</ul>
+<p>[animated graphic]</p>
+
+<img src="./images/slowcode.png" width="160" align="right" class="r-stretch"></section>
+<section id="the-next-generation-of-promises" class="slide level2">
+<h2>The next generation of promises</h2>
+<p><span style="color:darkGreen">mirai promises</span></p>
+<ul>
+<li class="fragment">Efficient and event-driven</li>
+<li class="fragment">Zero-latency</li>
+<li class="fragment">Launch one million promises</li>
+</ul>
+<p>[animated graphic]</p>
+
+<img src="./images/shinyvideo.png" width="160" align="right" class="r-stretch"></section>
+<section id="shiny-app-that-launches-and-tracks-one-million-promises" class="slide level2">
+<h2>Shiny App that launches and tracks one million promises</h2>
+<p>[video demo - counter that increments quickly and smoothly]</p>
+</section>
+<section id="plumber-app-handling-simulatenous-requests" class="slide level2">
+<h2>Plumber app handling simulatenous requests</h2>
+<p>[video demo - use <code>nanonext::ncurl_aio()</code> to fire off 100 requests]</p>
 </section>
 <section id="extending-mirai" class="slide level2">
 <h2>Extending mirai</h2>
