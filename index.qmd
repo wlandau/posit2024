@@ -42,13 +42,77 @@ knitr::opts_chunk$set(
 <h4>Charlie Gao and Will Landau</h4>
 </center>
 
-## mirai provides next generation async
+## What is next generation async?
 
-<img src="./images/mirai.png">
+In many modern languages, async is treated as a 'first class' citizen
 
-- completely event-driven 'promises'
-- zero-latency vs. 100ms latency
-- optimally efficient
+- Rust and 'fearless concurrency'
+- Go and Goroutines
+
+. . .
+
+R on the other hand:
+
+- {coro} for coroutines, not true parallelism
+- {callr} just for local machine, saves files on filesytem
+- {future} just an API, uses backend {parallelly}, not queued
+
+## Bringing first class async to R
+
+::: {.nonincremental}
+<img src="./images/nanonext.png" width="160" align="right">
+
+- NNG is a C messaging library
+- Incredibly lightweight, brokerless
+- Own threaded concurrency framework
+- {nanonext} brings NNG capabilities to R
+
+<img src="./images/nng.png">
+:::
+
+## mirai
+
+::: {.nonincremental}
+<img src="./images/mirai.png" width="160" align="right">
+
+ミライ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / mI ˈ ra ˈ i: /
+n. future
+
+Minimalist Async Evaluation Framework for R
+
+- Built on nanonext (single dependency)
+- Reduces round-trip task resolution from milliseconds to microseconds
+- Designed for production and validated by heavy-duty usage in life sciences industry
+:::
+
+## The current generation of promises
+
+- `future_promise()` has never exited 'experimental' status
+- Requires constant polling for resolution of each promises
+
+[animated graphic]
+
+<img src="./images/slowcode.png" width="160" align="right">
+
+## The next generation of promises
+
+<span style="color:darkGreen">mirai promises</span>
+
+- Efficient and event-driven
+- Zero-latency
+- Launch one million promises
+
+[animated graphic]
+
+<img src="./images/shinyvideo.png" width="160" align="right">
+
+## Shiny App that launches and tracks one million promises
+
+[video demo - counter that increments quickly and smoothly]
+
+## Plumber app handling simulatenous requests
+
+[video demo - use `nanonext::ncurl_aio()` to fire off 100 requests]
 
 ## Extending mirai
 
