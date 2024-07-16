@@ -44,36 +44,46 @@ knitr::opts_chunk$set(
 
 ## What is next generation async?
 
-In many modern languages, async is treated as a 'first class' citizen
+. . .
 
+In many programming languages, async is treated as a 'first class' citizen
+
+. . .
+
+::: {.nonincremental}
 - Rust has its 'fearless concurrency'
 - Go has its Goroutines
-- Javascript has its promises
+- Javascript has its Promises
+:::
 
-Javascript 'just works'<sup>TM</sup> in your web browser.
+. . .
+
+<span style="color:blue">Javascript 'just works'<sup>TM</sup> in your web browser</span>
 
 ## Where we are now in R
 
 - {coro} for coroutines, not true parallelism
-- {callr} just for local machine, saves files on filesytem
-- {future} just an API, uses backend {parallelly}, not queued
+- {callr} only for local parallelism, saves files to filesystem
+- {future} not queued and blocks if tasks > workers
+
+. . .
+
+<span style="color:brown">Hardly a 'first-class' experience</span>
 
 ## Bringing first class async to R
 
-::: {.nonincremental}
 <img src="./images/nanonext.png" width="160" align="right">
 
-- NNG is a C messaging library
+- Nanomsg Next Gen (NNG) implements async in C
 - Incredibly lightweight, brokerless
-- Own threaded concurrency framework
-- {nanonext} brings NNG capabilities to R
+- {nanonext} brings NNG to R
+
+. . .
 
 <img src="./images/nng.png">
-:::
 
 ## mirai
 
-::: {.nonincremental}
 <img src="./images/mirai.png" width="160" align="right">
 
 ミライ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / mI ˈ ra ˈ i: /
@@ -81,15 +91,17 @@ n. future
 
 Minimalist Async Evaluation Framework for R
 
+. . .
+
 - Built on nanonext (single dependency)
-- Reduces round-trip task resolution from milliseconds to microseconds
-- Designed for production and battle-tested by heavy-duty usage in life sciences industry
-:::
+- Reduces task resolution time from milliseconds to microseconds
+- Proven track record from heavy-duty workloads in life sciences industry
 
 ## The current generation of promises
 
-- `future_promise()` has never exited 'experimental' status
-- Requires constant polling for resolution of each promises
+- `future()` not queued and blocks if tasks > workers
+- `future_promise()` has never exited 'experimental'
+- Requires constant polling for resolution of each promise
 
 [animated graphic]
 
@@ -97,11 +109,9 @@ Minimalist Async Evaluation Framework for R
 
 ## The next generation of promises
 
-<span style="color:darkGreen">mirai promises</span>
-
-- Efficient and event-driven
-- Zero-latency
-- Launch one million promises
+- `mirai()` event-driven promises
+- Efficient and zero-latency
+- Launch one million promises simultaneously
 
 [animated graphic]
 

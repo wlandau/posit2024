@@ -419,64 +419,74 @@ Charlie Gao and Will Landau
 </section>
 <section id="what-is-next-generation-async" class="slide level2">
 <h2>What is next generation async?</h2>
-<p>In many modern languages, async is treated as a ‘first class’ citizen</p>
+<div class="fragment">
+<p>In many programming languages, async is treated as a ‘first class’ citizen</p>
+</div>
+<div class="fragment">
+<div>
 <ul>
-<li class="fragment">Rust has its ‘fearless concurrency’</li>
-<li class="fragment">Go has its Goroutines</li>
-<li class="fragment">Javascript has its promises</li>
+<li>Rust has its ‘fearless concurrency’</li>
+<li>Go has its Goroutines</li>
+<li>Javascript has its Promises</li>
 </ul>
-<p>Javascript ‘just works’<sup>TM</sup> in your web browser.</p>
+</div>
+</div>
+<div class="fragment">
+<p><span style="color:blue">Javascript ‘just works’<sup>TM</sup> in your web browser</span></p>
+</div>
 </section>
 <section id="where-we-are-now-in-r" class="slide level2">
 <h2>Where we are now in R</h2>
 <ul>
 <li class="fragment">{coro} for coroutines, not true parallelism</li>
-<li class="fragment">{callr} just for local machine, saves files on filesytem</li>
-<li class="fragment">{future} just an API, uses backend {parallelly}, not queued</li>
+<li class="fragment">{callr} only for local parallelism, saves files to filesystem</li>
+<li class="fragment">{future} not queued and blocks if tasks &gt; workers</li>
 </ul>
+<div class="fragment">
+<p><span style="color:brown">Hardly a ‘first-class’ experience</span></p>
+</div>
 </section>
 <section id="bringing-first-class-async-to-r" class="slide level2">
 <h2>Bringing first class async to R</h2>
-<div>
 <p><img src="./images/nanonext.png" width="160" align="right"></p>
 <ul>
-<li>NNG is a C messaging library</li>
-<li>Incredibly lightweight, brokerless</li>
-<li>Own threaded concurrency framework</li>
-<li>{nanonext} brings NNG capabilities to R</li>
+<li class="fragment">Nanomsg Next Gen (NNG) implements async in C</li>
+<li class="fragment">Incredibly lightweight, brokerless</li>
+<li class="fragment">{nanonext} brings NNG to R</li>
 </ul>
+<div class="fragment">
 <p><img src="./images/nng.png"></p>
 </div>
 </section>
 <section id="mirai" class="slide level2">
 <h2>mirai</h2>
-<div>
-<p><img src="./images/mirai.png" width="160" align="right"></p>
-<p>ミライ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / mI ˈ ra ˈ i: / n.&nbsp;future</p>
+
+<img src="./images/mirai.png" width="160" align="right" class="r-stretch"><p>ミライ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / mI ˈ ra ˈ i: / n.&nbsp;future</p>
 <p>Minimalist Async Evaluation Framework for R</p>
+<div class="fragment">
 <ul>
-<li>Built on nanonext (single dependency)</li>
-<li>Reduces round-trip task resolution from milliseconds to microseconds</li>
-<li>Designed for production and battle-tested by heavy-duty usage in life sciences industry</li>
+<li class="fragment">Built on nanonext (single dependency)</li>
+<li class="fragment">Reduces task resolution time from milliseconds to microseconds</li>
+<li class="fragment">Proven track record from heavy-duty workloads in life sciences industry</li>
 </ul>
 </div>
 </section>
 <section id="the-current-generation-of-promises" class="slide level2">
 <h2>The current generation of promises</h2>
 <ul>
-<li class="fragment"><code>future_promise()</code> has never exited ‘experimental’ status</li>
-<li class="fragment">Requires constant polling for resolution of each promises</li>
+<li class="fragment"><code>future()</code> not queued and blocks if tasks &gt; workers</li>
+<li class="fragment"><code>future_promise()</code> has never exited ‘experimental’</li>
+<li class="fragment">Requires constant polling for resolution of each promise</li>
 </ul>
 <p>[animated graphic]</p>
 
 <img src="./images/slowcode.png" width="160" align="right" class="r-stretch"></section>
 <section id="the-next-generation-of-promises" class="slide level2">
 <h2>The next generation of promises</h2>
-<p><span style="color:darkGreen">mirai promises</span></p>
 <ul>
-<li class="fragment">Efficient and event-driven</li>
-<li class="fragment">Zero-latency</li>
-<li class="fragment">Launch one million promises</li>
+<li class="fragment"><code>mirai()</code> event-driven promises</li>
+<li class="fragment">Efficient and zero-latency</li>
+<li class="fragment">Launch one million promises simultaneously</li>
 </ul>
 <p>[animated graphic]</p>
 
