@@ -46,12 +46,13 @@ knitr::opts_chunk$set(
 
 In many modern languages, async is treated as a 'first class' citizen
 
-- Rust and 'fearless concurrency'
-- Go and Goroutines
+- Rust has its 'fearless concurrency'
+- Go has its Goroutines
+- Javascript has its promises
 
-. . .
+Javascript 'just works'<sup>TM</sup> in your web browser.
 
-R on the other hand:
+## Where we are now in R
 
 - {coro} for coroutines, not true parallelism
 - {callr} just for local machine, saves files on filesytem
@@ -82,7 +83,7 @@ Minimalist Async Evaluation Framework for R
 
 - Built on nanonext (single dependency)
 - Reduces round-trip task resolution from milliseconds to microseconds
-- Designed for production and validated by heavy-duty usage in life sciences industry
+- Designed for production and battle-tested by heavy-duty usage in life sciences industry
 :::
 
 ## The current generation of promises
