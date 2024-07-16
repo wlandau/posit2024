@@ -153,7 +153,8 @@ knitr::opts_chunk$set(
 
 controller <- crew_controller_local(
   workers = 2,
-  seconds_idle = 10
+  seconds_idle = 10,
+  tasks_max = Inf
 )
 ```
 
