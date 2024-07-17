@@ -450,8 +450,6 @@ Charlie Gao and Will Landau
 <div class="fragment">
 <p><span style="color:darkorange">Async is the ability to do multiple things at once.</span></p>
 <p><span style="color:darkorange">And keep doing more of those things.</span></p>
-</div>
-<div class="fragment">
 <ul>
 <li class="fragment">{coro} splits up current execution, not true parallelism</li>
 <li class="fragment">{callr} only for local parallelism, saves files to filesystem</li>
@@ -464,11 +462,10 @@ Charlie Gao and Will Landau
 </section>
 <section id="bringing-first-class-async-to-r" class="slide level2">
 <h2>Bringing first class async to R</h2>
-<p><img src="./images/nanonext.png" width="160" align="right"></p>
 <ul>
 <li class="fragment">Nanomsg Next Gen (NNG) implements async in C</li>
 <li class="fragment">Incredibly lightweight, brokerless</li>
-<li class="fragment">{nanonext} brings NNG to R</li>
+<li class="fragment">{nanonext} brings NNG to R <img src="./images/nanonext.png" width="160" align="right"></li>
 </ul>
 <div class="fragment">
 <p><img src="./images/nng.png"></p>
@@ -476,27 +473,31 @@ Charlie Gao and Will Landau
 </section>
 <section id="mirai" class="slide level2">
 <h2>mirai</h2>
-
-<img src="./images/mirai.png" width="160" align="right" class="r-stretch"><p>ミライ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / mI ˈ ra ˈ i: / n.&nbsp;future</p>
+<p>ミライ <img src="./images/mirai.png" width="160" align="right"></p>
 <p>Minimalist Async Evaluation Framework for R</p>
 <div class="fragment">
+<p><span style="color:darkorange">Async is the ability to do multiple things at once.</span></p>
+<p><span style="color:darkorange">And keep doing more of those things.</span></p>
 <ul>
-<li class="fragment">Built on nanonext (single dependency)</li>
-<li class="fragment">Reduces overhead from milliseconds to microseconds</li>
-<li class="fragment">Proven track record from heavy-duty workloads in life sciences industry</li>
+<li class="fragment">{mirai} uses {nanonext} to deliver async</li>
+<li class="fragment">Enables thousands of parallel processes</li>
+<li class="fragment">Launch millions of tasks all at once</li>
+<li class="fragment">Response time from milliseconds to microseconds</li>
 </ul>
 </div>
 </section>
 <section id="the-current-generation-of-promises" class="slide level2">
 <h2>The current generation of promises</h2>
+<p>Shiny ExtendedTask takes a ‘promising’ object:</p>
 <ul>
 <li class="fragment"><code>future()</code> blocks the session if tasks &gt; workers</li>
 <li class="fragment"><code>future_promise()</code> has never exited ‘experimental’</li>
 <li class="fragment">Requires constant polling for resolution of each promise</li>
 </ul>
+<div class="fragment">
 <p>[animated graphic]</p>
-
-<img src="./images/slowcode.png" width="160" align="right" class="r-stretch"></section>
+</div>
+</section>
 <section id="the-next-generation-of-promises" class="slide level2">
 <h2>The next generation of promises</h2>
 <ul>
@@ -505,9 +506,10 @@ Charlie Gao and Will Landau
 <li class="fragment">Event-driven: efficient and zero-latency</li>
 <li class="fragment">Allows launching one million promises simultaneously</li>
 </ul>
+<div class="fragment">
 <p>[animated graphic]</p>
-
-<img src="./images/shinyvideo.png" width="160" align="right" class="r-stretch"></section>
+</div>
+</section>
 <section id="extending-mirai" class="slide level2">
 <h2>Extending mirai</h2>
 <center>

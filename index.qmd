@@ -81,8 +81,6 @@ In many programming languages, async is treated as a 'first class' citizen
 
 <span style="color:darkorange">And keep doing more of those things.</span>
 
-. . .
-
 - {coro} splits up current execution, not true parallelism
 - {callr} only for local parallelism, saves files to filesystem
 - {future} relies on {parallelly} and blocks if tasks > workers
@@ -93,11 +91,9 @@ In many programming languages, async is treated as a 'first class' citizen
 
 ## Bringing first class async to R
 
-<img src="./images/nanonext.png" width="160" align="right">
-
 - Nanomsg Next Gen (NNG) implements async in C
 - Incredibly lightweight, brokerless
-- {nanonext} brings NNG to R
+- {nanonext} brings NNG to R <img src="./images/nanonext.png" width="160" align="right">
 
 . . .
 
@@ -105,28 +101,32 @@ In many programming languages, async is treated as a 'first class' citizen
 
 ## mirai
 
-<img src="./images/mirai.png" width="160" align="right">
-
-ミライ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / mI ˈ ra ˈ i: /
-n. future
+ミライ <img src="./images/mirai.png" width="160" align="right">
 
 Minimalist Async Evaluation Framework for R
 
 . . .
 
-- Built on nanonext (single dependency)
-- Reduces overhead from milliseconds to microseconds
-- Proven track record from heavy-duty workloads in life sciences industry
+<span style="color:darkorange">Async is the ability to do multiple things at once.</span>
+
+<span style="color:darkorange">And keep doing more of those things.</span>
+
+- {mirai} uses {nanonext} to deliver async
+- Enables thousands of parallel processes
+- Launch millions of tasks all at once
+- Response time from milliseconds to microseconds
 
 ## The current generation of promises
+
+Shiny ExtendedTask takes a 'promising' object:
 
 - `future()` blocks the session if tasks > workers
 - `future_promise()` has never exited 'experimental'
 - Requires constant polling for resolution of each promise
 
-[animated graphic]
+. . .
 
-<img src="./images/slowcode.png" width="160" align="right">
+[animated graphic]
 
 ## The next generation of promises
 
@@ -135,9 +135,9 @@ Minimalist Async Evaluation Framework for R
 - Event-driven: efficient and zero-latency
 - Allows launching one million promises simultaneously
 
-[animated graphic]
+. . .
 
-<img src="./images/shinyvideo.png" width="160" align="right">
+[animated graphic]
 
 ## Extending mirai
 
