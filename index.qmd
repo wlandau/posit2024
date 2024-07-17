@@ -149,6 +149,10 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 :::
 ::::
 
+## {.center}
+
+<span style="color:darkgreen">First-class async for R / R Shiny</span>
+
 ## Extending mirai
 
 <center>
