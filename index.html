@@ -422,12 +422,12 @@ Charlie Gao and Will Landau
 
 <img src="./images/joe.png" class="r-stretch"></section>
 <section id="what-is-next-generation-async" class="slide level2">
-<h2>What is next generation async?</h2>
+<h2>What is (next generation) async?</h2>
 <div class="fragment">
-<p><span style="color:darkorange">Async is the ability to do multiple things at once.</span></p>
+<p><span style="color:darkgreen">Async is the ability to do multiple things at once</span></p>
 </div>
 <div class="fragment">
-<p><span style="color:darkorange">And keep doing more of those things.</span></p>
+<p><span style="color:darkgreen">And keep doing more of those things</span></p>
 </div>
 <div class="fragment">
 <p>In many programming languages, async is treated as a ‘first class’ citizen</p>
@@ -448,8 +448,8 @@ Charlie Gao and Will Landau
 <section id="where-we-are-now-in-r" class="slide level2">
 <h2>Where we are now in R</h2>
 <div class="fragment">
-<p><span style="color:darkorange">Async is the ability to do multiple things at once.</span></p>
-<p><span style="color:darkorange">And keep doing more of those things.</span></p>
+<p><span style="color:darkgreen">Async is the ability to do multiple things at once</span></p>
+<p><span style="color:darkgreen">And keep doing more of those things</span></p>
 <ul>
 <li class="fragment">{coro} splits up current execution, not true parallelism</li>
 <li class="fragment">{callr} only for local parallelism, saves files to filesystem</li>
@@ -457,7 +457,7 @@ Charlie Gao and Will Landau
 </ul>
 </div>
 <div class="fragment">
-<p><span style="color:brown">Hardly a ‘first-class’ experience</span></p>
+<p><span style="color:brown">Missing a ‘first-class’ async experience</span></p>
 </div>
 </section>
 <section id="bringing-first-class-async-to-r" class="slide level2">
@@ -476,38 +476,46 @@ Charlie Gao and Will Landau
 <p>ミライ <img src="./images/mirai.png" width="160" align="right"></p>
 <p>Minimalist Async Evaluation Framework for R</p>
 <div class="fragment">
-<p><span style="color:darkorange">Async is the ability to do multiple things at once.</span></p>
-<p><span style="color:darkorange">And keep doing more of those things.</span></p>
+<p><span style="color:darkgreen">Async is the ability to do multiple things at once</span></p>
+<p><span style="color:darkgreen">And keep doing more of those things</span></p>
 <ul>
-<li class="fragment">{mirai} uses {nanonext} to deliver async</li>
+<li class="fragment">{mirai} uses {nanonext} to deliver ‘first-class’ async</li>
 <li class="fragment">Enables thousands of parallel processes</li>
 <li class="fragment">Launch millions of tasks all at once</li>
-<li class="fragment">Response time from milliseconds to microseconds</li>
+<li class="fragment">Reduced response time from milliseconds to microseconds</li>
 </ul>
 </div>
 </section>
 <section id="the-current-generation-of-promises" class="slide level2">
 <h2>The current generation of promises</h2>
-<p>Shiny ExtendedTask takes a ‘promising’ object:</p>
+<p>A ‘promising’ object is used in Shiny ExtendedTask / Plumber:</p>
 <ul>
 <li class="fragment"><code>future()</code> blocks the session if tasks &gt; workers</li>
 <li class="fragment"><code>future_promise()</code> has never exited ‘experimental’</li>
 <li class="fragment">Requires constant polling for resolution of each promise</li>
 </ul>
-<div class="fragment">
-<p>[animated graphic]</p>
+<div class="r-stack">
+<p><img data-src="./images/hula1.gif" class="fragment"></p>
+<p><img data-src="./images/hula1.gif" class="fragment"><img data-src="./images/hula1.gif" class="fragment"><img data-src="./images/hula1.gif" class="fragment"><img data-src="./images/hula1.gif" class="fragment"></p>
 </div>
 </section>
 <section id="the-next-generation-of-promises" class="slide level2">
 <h2>The next generation of promises</h2>
 <ul>
-<li class="fragment"><code>mirai()</code> can be used wherever a ‘promise’ is accepted</li>
-<li class="fragment">Native support for Shiny ExtendedTask</li>
-<li class="fragment">Event-driven: efficient and zero-latency</li>
-<li class="fragment">Allows launching one million promises simultaneously</li>
+<li class="fragment"><code>mirai()</code> is now a ‘promising’ object</li>
+<li class="fragment">Native support for Shiny ExtendedTask / Plumber</li>
 </ul>
-<div class="fragment">
-<p>[animated graphic]</p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img data-src="./images/wiredcon.gif" class="fragment"></p>
+</div><div class="column" style="width:50%;">
+<ul>
+<li class="fragment">Event-driven</li>
+<li class="fragment">Efficient</li>
+<li class="fragment">Zero-latency</li>
+<li class="fragment">Launch one million promises <span style="color:darkgreen">all at once</span></li>
+</ul>
+</div>
 </div>
 </section>
 <section id="extending-mirai" class="slide level2">

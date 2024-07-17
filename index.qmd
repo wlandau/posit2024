@@ -46,15 +46,15 @@ knitr::opts_chunk$set(
 
 <img src="./images/joe.png">
 
-## What is next generation async?
+## What is (next generation) async?
 
 . . .
 
-<span style="color:darkorange">Async is the ability to do multiple things at once.</span>
+<span style="color:darkgreen">Async is the ability to do multiple things at once</span>
 
 . . .
 
-<span style="color:darkorange">And keep doing more of those things.</span>
+<span style="color:darkgreen">And keep doing more of those things</span>
 
 . . .
 
@@ -77,9 +77,9 @@ In many programming languages, async is treated as a 'first class' citizen
 
 . . .
 
-<span style="color:darkorange">Async is the ability to do multiple things at once.</span>
+<span style="color:darkgreen">Async is the ability to do multiple things at once</span>
 
-<span style="color:darkorange">And keep doing more of those things.</span>
+<span style="color:darkgreen">And keep doing more of those things</span>
 
 - {coro} splits up current execution, not true parallelism
 - {callr} only for local parallelism, saves files to filesystem
@@ -87,7 +87,7 @@ In many programming languages, async is treated as a 'first class' citizen
 
 . . .
 
-<span style="color:brown">Hardly a 'first-class' experience</span>
+<span style="color:brown">Missing a 'first-class' async experience</span>
 
 ## Bringing first class async to R
 
@@ -107,37 +107,45 @@ Minimalist Async Evaluation Framework for R
 
 . . .
 
-<span style="color:darkorange">Async is the ability to do multiple things at once.</span>
+<span style="color:darkgreen">Async is the ability to do multiple things at once</span>
 
-<span style="color:darkorange">And keep doing more of those things.</span>
+<span style="color:darkgreen">And keep doing more of those things</span>
 
-- {mirai} uses {nanonext} to deliver async
+- {mirai} uses {nanonext} to deliver 'first-class' async
 - Enables thousands of parallel processes
 - Launch millions of tasks all at once
-- Response time from milliseconds to microseconds
+- Reduced response time from milliseconds to microseconds
 
 ## The current generation of promises
 
-Shiny ExtendedTask takes a 'promising' object:
+A 'promising' object is used in Shiny ExtendedTask / Plumber:
 
 - `future()` blocks the session if tasks > workers
 - `future_promise()` has never exited 'experimental'
 - Requires constant polling for resolution of each promise
 
-. . .
+::: {.r-stack}
+![](./images/hula1.gif){.fragment}
 
-[animated graphic]
+![](./images/hula1.gif){.fragment}![](./images/hula1.gif){.fragment}![](./images/hula1.gif){.fragment}![](./images/hula1.gif){.fragment}
+:::
 
 ## The next generation of promises
 
-- `mirai()` can be used wherever a 'promise' is accepted
-- Native support for Shiny ExtendedTask
-- Event-driven: efficient and zero-latency
-- Allows launching one million promises simultaneously
+- `mirai()` is now a 'promising' object
+- Native support for Shiny ExtendedTask / Plumber
 
-. . .
-
-[animated graphic]
+:::: {.columns}
+::: {.column width="50%"}
+![](./images/wiredcon.gif){.fragment}
+:::
+::: {.column width="50%"}
+- Event-driven
+- Efficient
+- Zero-latency
+- Launch one million promises <span style="color:darkgreen">all at once</span>
+:::
+::::
 
 ## Extending mirai
 
