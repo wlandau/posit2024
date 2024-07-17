@@ -42,9 +42,22 @@ knitr::opts_chunk$set(
 <h4>Charlie Gao and Will Landau</h4>
 </center>
 
+## Carrying the baton for R
+
+<img src="./images/joe.png">
+
 ## What is next generation async?
 
 . . .
+
+<span style="color:darkorange">Async is the ability to do multiple things at once.</span>
+
+. . .
+
+<span style="color:darkorange">And keep doing more of those things.</span>
+
+. . .
+
 
 In many programming languages, async is treated as a 'first class' citizen
 
@@ -62,9 +75,17 @@ In many programming languages, async is treated as a 'first class' citizen
 
 ## Where we are now in R
 
-- {coro} for coroutines, not true parallelism
+. . .
+
+<span style="color:darkorange">Async is the ability to do multiple things at once.</span>
+
+<span style="color:darkorange">And keep doing more of those things.</span>
+
+. . .
+
+- {coro} splits up current execution, not true parallelism
 - {callr} only for local parallelism, saves files to filesystem
-- {future} not queued and blocks if tasks > workers
+- {future} relies on {parallelly} and blocks if tasks > workers
 
 . . .
 
@@ -94,12 +115,12 @@ Minimalist Async Evaluation Framework for R
 . . .
 
 - Built on nanonext (single dependency)
-- Reduces task resolution time from milliseconds to microseconds
+- Reduces overhead from milliseconds to microseconds
 - Proven track record from heavy-duty workloads in life sciences industry
 
 ## The current generation of promises
 
-- `future()` not queued and blocks if tasks > workers
+- `future()` blocks the session if tasks > workers
 - `future_promise()` has never exited 'experimental'
 - Requires constant polling for resolution of each promise
 
@@ -109,21 +130,14 @@ Minimalist Async Evaluation Framework for R
 
 ## The next generation of promises
 
-- `mirai()` event-driven promises
-- Efficient and zero-latency
-- Launch one million promises simultaneously
+- `mirai()` can be used wherever a 'promise' is accepted
+- Native support for Shiny ExtendedTask
+- Event-driven: efficient and zero-latency
+- Allows launching one million promises simultaneously
 
 [animated graphic]
 
 <img src="./images/shinyvideo.png" width="160" align="right">
-
-## Shiny App that launches and tracks one million promises
-
-[video demo - counter that increments quickly and smoothly]
-
-## Plumber app handling simulatenous requests
-
-[video demo - use `nanonext::ncurl_aio()` to fire off 100 requests]
 
 ## Extending mirai
 
