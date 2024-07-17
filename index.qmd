@@ -91,13 +91,16 @@ In many programming languages, async is treated as a 'first class' citizen
 
 ## Bringing first class async to R
 
-- Nanomsg Next Gen (NNG) implements async in C
-- Incredibly lightweight, brokerless
-- {nanonext} brings NNG to R <img src="./images/nanonext.png" width="160" align="right">
-
 . . .
 
 <img src="./images/nng.png">
+
+::: {.nonincremental}
+- Nanomsg Next Gen (NNG) implements async in C
+- Incredibly lightweight, brokerless messaging
+:::
+- {nanonext} brings NNG to R &nbsp;&nbsp;&nbsp; <img src="./images/nanonext.png" width="160" align="right">
+
 
 ## mirai
 
@@ -112,9 +115,9 @@ Minimalist Async Evaluation Framework for R
 <span style="color:darkgreen">And keep doing more of those things</span>
 
 - {mirai} uses {nanonext} to deliver 'first-class' async
-- Enables thousands of parallel processes
-- Launch millions of tasks all at once
-- Reduced response time from milliseconds to microseconds
+- Connect thousands of parallel processes
+- Launch millions of tasks <span style="color:darkgreen">all at once</span>
+- Responsiveness: <span style="color:red">milli</span>seconds -> <span style="color:blue">micro</span>seconds
 
 ## The current generation of promises
 
@@ -140,8 +143,7 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 ![](./images/wiredcon.gif){.fragment}
 :::
 ::: {.column width="50%"}
-- Event-driven
-- Efficient
+- Event-driven & efficient
 - Zero-latency
 - Launch one million promises <span style="color:darkgreen">all at once</span>
 :::
@@ -153,7 +155,7 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 <img src="./images/crew.png">
 </center>
 
-## Science demands heavy computing.
+## Science demands heavy computing
 
 <center>
 <img src="./images/pipette.jpg" width=500>
@@ -161,9 +163,9 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 
 ::: {style="font-size:90%"}
 
-* Bayesian methods help safety/efficacy decisions in clinical trials.
-* Each model could take hours to run.
-* 1000+ simulations to design a clinical trial.
+* Bayesian methods help safety/efficacy decisions in clinical trials
+* Each model could take hours to run
+* 1000+ simulations to design a clinical trial
 
 :::
 
@@ -185,18 +187,18 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 
 ::::
 
-* Clinical trial simulations often need hundreds of computers.
+* Clinical trial simulations often need hundreds of computers
 * Need distributed computing: e.g. SLURM clusters, AWS Batch
-* Challenges: <b><span style="color:blue">access</span></b>, <b><span style="color:brown">overhead</span></b>, and <b><span style="color:darkGreen">cost</span></b>.
+* Challenges: <b><span style="color:blue">access</span></b>, <b><span style="color:brown">overhead</span></b>, and <b><span style="color:darkGreen">cost</span></b>
 
 
-## `crew` scales data science.
+## `crew` scales data science
 
 ![](./images/plugins.png)
 
-1. `mirai` provides low-<b><span style="color:brown">overhead</span></b> interprocess communication.
-2. Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b>.
-3. Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems.
+1. `mirai` provides low-<b><span style="color:brown">overhead</span></b> interprocess communication
+2. Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b>
+3. Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems
 
 ## Low-<b><span style="color:brown">overhead</span></b> communication
 
@@ -215,27 +217,27 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 ![](./images/workers4.png)
 
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale1.png)
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale2.png)
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale3.png)
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale4.png)
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale5.png)
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale6.png)
 
@@ -315,7 +317,7 @@ crew_controller_aws_batch(
 
 * Write your own plugins: <https://wlandau.github.io/crew/articles/plugins.html>
 
-## `crew` unblocks Shiny apps.
+## `crew` unblocks Shiny apps
 
 :::: {.columns style="font-size:130%"}
 
@@ -332,7 +334,7 @@ observeEvent(input$button, {
 
 ![](./images/coin-flips.gif)
 
-## `crew` accelerates `targets`.
+## `crew` accelerates `targets`
 
 <br>
 

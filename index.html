@@ -462,13 +462,17 @@ Charlie Gao and Will Landau
 </section>
 <section id="bringing-first-class-async-to-r" class="slide level2">
 <h2>Bringing first class async to R</h2>
-<ul>
-<li class="fragment">Nanomsg Next Gen (NNG) implements async in C</li>
-<li class="fragment">Incredibly lightweight, brokerless</li>
-<li class="fragment">{nanonext} brings NNG to R <img src="./images/nanonext.png" width="160" align="right"></li>
-</ul>
 <div class="fragment">
 <p><img src="./images/nng.png"></p>
+<div>
+<ul>
+<li>Nanomsg Next Gen (NNG) implements async in C</li>
+<li>Incredibly lightweight, brokerless messaging</li>
+</ul>
+</div>
+<ul>
+<li class="fragment">{nanonext} brings NNG to R &nbsp;&nbsp;&nbsp; <img src="./images/nanonext.png" width="160" align="right"></li>
+</ul>
 </div>
 </section>
 <section id="mirai" class="slide level2">
@@ -480,9 +484,9 @@ Charlie Gao and Will Landau
 <p><span style="color:darkgreen">And keep doing more of those things</span></p>
 <ul>
 <li class="fragment">{mirai} uses {nanonext} to deliver ‘first-class’ async</li>
-<li class="fragment">Enables thousands of parallel processes</li>
-<li class="fragment">Launch millions of tasks all at once</li>
-<li class="fragment">Reduced response time from milliseconds to microseconds</li>
+<li class="fragment">Connect thousands of parallel processes</li>
+<li class="fragment">Launch millions of tasks <span style="color:darkgreen">all at once</span></li>
+<li class="fragment">Responsiveness: <span style="color:red">milli</span>seconds -&gt; <span style="color:blue">micro</span>seconds</li>
 </ul>
 </div>
 </section>
@@ -510,8 +514,7 @@ Charlie Gao and Will Landau
 <p><img data-src="./images/wiredcon.gif" class="fragment"></p>
 </div><div class="column" style="width:50%;">
 <ul>
-<li class="fragment">Event-driven</li>
-<li class="fragment">Efficient</li>
+<li class="fragment">Event-driven &amp; efficient</li>
 <li class="fragment">Zero-latency</li>
 <li class="fragment">Launch one million promises <span style="color:darkgreen">all at once</span></li>
 </ul>
@@ -524,16 +527,16 @@ Charlie Gao and Will Landau
 <img src="./images/crew.png">
 </center>
 </section>
-<section id="science-demands-heavy-computing." class="slide level2">
-<h2>Science demands heavy computing.</h2>
+<section id="science-demands-heavy-computing" class="slide level2">
+<h2>Science demands heavy computing</h2>
 <center>
 <img src="./images/pipette.jpg" width="500">
 </center>
 <div style="font-size:90%">
 <ul>
-<li class="fragment">Bayesian methods help safety/efficacy decisions in clinical trials.</li>
-<li class="fragment">Each model could take hours to run.</li>
-<li class="fragment">1000+ simulations to design a clinical trial.</li>
+<li class="fragment">Bayesian methods help safety/efficacy decisions in clinical trials</li>
+<li class="fragment">Each model could take hours to run</li>
+<li class="fragment">1000+ simulations to design a clinical trial</li>
 </ul>
 </div>
 </section>
@@ -547,18 +550,18 @@ Charlie Gao and Will Landau
 </div>
 </div>
 <ul>
-<li class="fragment">Clinical trial simulations often need hundreds of computers.</li>
+<li class="fragment">Clinical trial simulations often need hundreds of computers</li>
 <li class="fragment">Need distributed computing: e.g.&nbsp;SLURM clusters, AWS Batch</li>
-<li class="fragment">Challenges: <b><span style="color:blue">access</span></b>, <b><span style="color:brown">overhead</span></b>, and <b><span style="color:darkGreen">cost</span></b>.</li>
+<li class="fragment">Challenges: <b><span style="color:blue">access</span></b>, <b><span style="color:brown">overhead</span></b>, and <b><span style="color:darkGreen">cost</span></b></li>
 </ul>
 </section>
-<section id="crew-scales-data-science." class="slide level2">
-<h2><code>crew</code> scales data science.</h2>
+<section id="crew-scales-data-science" class="slide level2">
+<h2><code>crew</code> scales data science</h2>
 
 <img data-src="./images/plugins.png" class="r-stretch"><ol type="1">
-<li class="fragment"><code>mirai</code> provides low-<b><span style="color:brown">overhead</span></b> interprocess communication.</li>
-<li class="fragment">Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b>.</li>
-<li class="fragment">Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems.</li>
+<li class="fragment"><code>mirai</code> provides low-<b><span style="color:brown">overhead</span></b> interprocess communication</li>
+<li class="fragment">Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b></li>
+<li class="fragment">Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems</li>
 </ol>
 </section>
 <section id="low-overhead-communication" class="slide level2">
@@ -577,28 +580,28 @@ Charlie Gao and Will Landau
 <h2>Low-<b><span style="color:brown">overhead</span></b> communication</h2>
 
 <img data-src="./images/workers4.png" class="r-stretch"></section>
-<section id="auto-scaling-reduces-overhead-cost." class="slide level2">
-<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b>.</h2>
+<section id="auto-scaling-reduces-overhead-cost" class="slide level2">
+<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b></h2>
 
 <img data-src="./images/autoscale1.png" class="r-stretch"></section>
-<section id="auto-scaling-reduces-overhead-cost.-1" class="slide level2">
-<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b>.</h2>
+<section id="auto-scaling-reduces-overhead-cost-1" class="slide level2">
+<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b></h2>
 
 <img data-src="./images/autoscale2.png" class="r-stretch"></section>
-<section id="auto-scaling-reduces-overhead-cost.-2" class="slide level2">
-<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b>.</h2>
+<section id="auto-scaling-reduces-overhead-cost-2" class="slide level2">
+<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b></h2>
 
 <img data-src="./images/autoscale3.png" class="r-stretch"></section>
-<section id="auto-scaling-reduces-overhead-cost.-3" class="slide level2">
-<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b>.</h2>
+<section id="auto-scaling-reduces-overhead-cost-3" class="slide level2">
+<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b></h2>
 
 <img data-src="./images/autoscale4.png" class="r-stretch"></section>
-<section id="auto-scaling-reduces-overhead-cost.-4" class="slide level2">
-<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b>.</h2>
+<section id="auto-scaling-reduces-overhead-cost-4" class="slide level2">
+<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b></h2>
 
 <img data-src="./images/autoscale5.png" class="r-stretch"></section>
-<section id="auto-scaling-reduces-overhead-cost.-5" class="slide level2">
-<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b>.</h2>
+<section id="auto-scaling-reduces-overhead-cost-5" class="slide level2">
+<h2>Auto-scaling reduces <b><span style="color:brown">overhead</span></b> &amp; <b><span style="color:darkGreen">cost</span></b></h2>
 
 <img data-src="./images/autoscale6.png" class="r-stretch"></section>
 <section id="simple-controller-interface" class="slide level2">
@@ -652,8 +655,8 @@ Charlie Gao and Will Landau
 <li class="fragment">Write your own plugins: <a href="https://wlandau.github.io/crew/articles/plugins.html" class="uri">https://wlandau.github.io/crew/articles/plugins.html</a></li>
 </ul>
 </section>
-<section id="crew-unblocks-shiny-apps." class="slide level2">
-<h2><code>crew</code> unblocks Shiny apps.</h2>
+<section id="crew-unblocks-shiny-apps" class="slide level2">
+<h2><code>crew</code> unblocks Shiny apps</h2>
 <div class="columns" style="font-size:130%">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, {</span>
 <span id="cb5-2"><a href=""></a>  <span class="fu">replicate</span>(<span class="dv">1000</span>, </span>
@@ -664,8 +667,8 @@ Charlie Gao and Will Landau
 </div>
 
 <img data-src="./images/coin-flips.gif" class="r-stretch"></section>
-<section id="crew-accelerates-targets." class="slide level2">
-<h2><code>crew</code> accelerates <code>targets</code>.</h2>
+<section id="crew-accelerates-targets" class="slide level2">
+<h2><code>crew</code> accelerates <code>targets</code></h2>
 <p><br></p>
 <div class="columns" style="font-size:115%">
 <div class="column" style="width:75%;">
