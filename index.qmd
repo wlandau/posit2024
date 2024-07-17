@@ -81,7 +81,6 @@ In many programming languages, async is treated as a 'first class' citizen
 
 <span style="color:darkgreen">And keep doing more of those things</span>
 
-- {coro} splits up current execution, not true parallelism
 - {callr} only for local parallelism, saves files to filesystem
 - {future} relies on {parallelly} and blocks if tasks > workers
 
