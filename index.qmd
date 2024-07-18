@@ -42,78 +42,126 @@ knitr::opts_chunk$set(
 <h4>Charlie Gao and Will Landau</h4>
 </center>
 
-## What is next generation async?
+## Carrying the baton for R
 
-In many modern languages, async is treated as a 'first class' citizen
+<img src="./images/joe.png">
 
+## What is (next generation) async?
+
+. . .
+
+<span style="color:darkgreen">Async is the ability to do multiple things at once</span>
+
+. . .
+
+<span style="color:darkgreen">And keep doing more of those things</span>
+
+. . .
+
+
+In many programming languages, async is treated as a 'first class' citizen
+
+. . .
+
+::: {.nonincremental}
 - Rust has its 'fearless concurrency'
 - Go has its Goroutines
-- Javascript has its promises
+- Javascript has its Promises
+:::
 
-Javascript 'just works'<sup>TM</sup> in your web browser.
+. . .
+
+<span style="color:blue">Javascript 'just works'<sup>TM</sup> in your web browser</span>
 
 ## Where we are now in R
 
-- {coro} for coroutines, not true parallelism
-- {callr} just for local machine, saves files on filesytem
-- {future} just an API, uses backend {parallelly}, not queued
+. . .
+
+<span style="color:darkgreen">Async is the ability to do multiple things at once</span>
+
+<span style="color:darkgreen">And keep doing more of those things</span>
+
+- {callr} only for local parallelism, saves files to filesystem
+- {future} relies on {parallelly} and blocks if tasks > workers
+
+. . .
+
+<span style="color:brown">Missing a 'first-class' async experience</span>
 
 ## Bringing first class async to R
 
-::: {.nonincremental}
-<img src="./images/nanonext.png" width="160" align="right">
-
-- NNG is a C messaging library
-- Incredibly lightweight, brokerless
-- Own threaded concurrency framework
-- {nanonext} brings NNG capabilities to R
+. . .
 
 <img src="./images/nng.png">
+
+::: {.nonincremental}
+- Nanomsg Next Gen (NNG) implements async in C
+- Incredibly lightweight, brokerless messaging
 :::
+- {nanonext} brings NNG to R &nbsp;&nbsp;&nbsp; <img src="./images/nanonext.png" width="160" align="right">
+
 
 ## mirai
 
-::: {.nonincremental}
-<img src="./images/mirai.png" width="160" align="right">
-
-ミライ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; / mI ˈ ra ˈ i: /
-n. future
+ミライ <img src="./images/mirai.png" width="160" align="right">
 
 Minimalist Async Evaluation Framework for R
 
-- Built on nanonext (single dependency)
-- Reduces round-trip task resolution from milliseconds to microseconds
-- Designed for production and battle-tested by heavy-duty usage in life sciences industry
-:::
+. . .
+
+<span style="color:darkgreen">Async is the ability to do multiple things at once</span>
+
+<span style="color:darkgreen">And keep doing more of those things</span>
+
+- {mirai} uses {nanonext} to deliver 'first-class' async
+- Connect thousands of parallel processes
+- Launch millions of tasks <span style="color:darkgreen">all at once</span>
+- Responsiveness: <span style="color:red">milli</span>seconds -> <span style="color:blue">micro</span>seconds
 
 ## The current generation of promises
 
-- `future_promise()` has never exited 'experimental' status
-- Requires constant polling for resolution of each promises
+A 'promising' object is used in Shiny ExtendedTask / Plumber:
 
-[animated graphic]
+- `future()` blocks the session if tasks > workers
+- `future_promise()` has never exited 'experimental'
+- Requires constant polling for resolution of each promise
 
-<img src="./images/slowcode.png" width="160" align="right">
+::: {.r-stack}
+![](./images/hula1.gif){.fragment}
+
+![](./images/hula1.gif){.fragment}![](./images/hula1.gif){.fragment}![](./images/hula1.gif){.fragment}![](./images/hula1.gif){.fragment}
+:::
 
 ## The next generation of promises
 
-<span style="color:darkGreen">mirai promises</span>
+- `mirai()` is now a 'promising' object
+- Native support for Shiny ExtendedTask / Plumber
 
-- Efficient and event-driven
+:::: {.columns}
+::: {.column width="50%"}
+![](./images/wiredcon.gif){.fragment}
+:::
+::: {.column width="50%"}
+- Event-driven & efficient
 - Zero-latency
-- Launch one million promises
+- Launch one million promises <span style="color:darkgreen">all at once</span>
+:::
+::::
 
-[animated graphic]
+## Demonstration
 
-<img src="./images/shinyvideo.png" width="160" align="right">
+<span style="color:darkgreen">First-class async for R / R Shiny</span>
 
-## Shiny App that launches and tracks one million promises
+This app simulates thousands of coin flips to determine if a coin is fair. Each coin flip is a task, and these are run in parallel.
 
-[video demo - counter that increments quickly and smoothly]
-
-## Plumber app handling simulatenous requests
-
-[video demo - use `nanonext::ncurl_aio()` to fire off 100 requests]
+:::: {.columns}
+::: {.column width="50%"}
+![](./images/coin-flips.gif)
+:::
+::: {.column width="50%"}
+![](./images/coin-flips.gif)
+:::
+::::
 
 ## Extending mirai
 
@@ -121,7 +169,7 @@ Minimalist Async Evaluation Framework for R
 <img src="./images/crew.png">
 </center>
 
-## Science demands heavy computing.
+## Science demands heavy computing
 
 <center>
 <img src="./images/pipette.jpg" width=500>
@@ -129,9 +177,9 @@ Minimalist Async Evaluation Framework for R
 
 ::: {style="font-size:90%"}
 
-* Bayesian methods help safety/efficacy decisions in clinical trials.
-* Each model could take hours to run.
-* 1000+ simulations to design a clinical trial.
+* Bayesian methods help safety/efficacy decisions in clinical trials
+* Each model could take hours to run
+* 1000+ simulations to design a clinical trial
 
 :::
 
@@ -153,18 +201,18 @@ Minimalist Async Evaluation Framework for R
 
 ::::
 
-* Clinical trial simulations often need hundreds of computers.
+* Clinical trial simulations often need hundreds of computers
 * Need distributed computing: e.g. SLURM clusters, AWS Batch
-* Challenges: <b><span style="color:blue">access</span></b>, <b><span style="color:brown">overhead</span></b>, and <b><span style="color:darkGreen">cost</span></b>.
+* Challenges: <b><span style="color:blue">access</span></b>, <b><span style="color:brown">overhead</span></b>, and <b><span style="color:darkGreen">cost</span></b>
 
 
-## `crew` scales data science.
+## `crew` scales data science
 
 ![](./images/plugins.png)
 
-1. `mirai` provides low-<b><span style="color:brown">overhead</span></b> interprocess communication.
-2. Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b>.
-3. Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems.
+1. `mirai` provides low-<b><span style="color:brown">overhead</span></b> interprocess communication
+2. Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b>
+3. Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems
 
 ## Low-<b><span style="color:brown">overhead</span></b> communication
 
@@ -183,27 +231,27 @@ Minimalist Async Evaluation Framework for R
 ![](./images/workers4.png)
 
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale1.png)
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale2.png)
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale3.png)
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale4.png)
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale5.png)
 
-## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>.
+## Auto-scaling reduces <b><span style="color:brown">overhead</span></b> & <b><span style="color:darkGreen">cost</span></b>
 
 ![](./images/autoscale6.png)
 
@@ -283,24 +331,7 @@ crew_controller_aws_batch(
 
 * Write your own plugins: <https://wlandau.github.io/crew/articles/plugins.html>
 
-## `crew` unblocks Shiny apps.
-
-:::: {.columns style="font-size:130%"}
-
-```r
-observeEvent(input$button, {
-  replicate(1000, 
-    controller$push(flip_coin(), ...) %...>%
-      collect_flips(controller, ...)
-  )
-})
-```
-
-::::
-
-![](./images/coin-flips.gif)
-
-## `crew` accelerates `targets`.
+## `crew` accelerates `targets`
 
 <br>
 
