@@ -148,9 +148,20 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 :::
 ::::
 
-## {.center}
+## Demonstration
 
 <span style="color:darkgreen">First-class async for R / R Shiny</span>
+
+This app simulates thousands of coin flips to determine if a coin is fair. Each coin flip is a task, and these are run in parallel.
+
+:::: {.columns}
+::: {.column width="50%"}
+![](./images/coin-flips.gif)
+:::
+::: {.column width="50%"}
+![](./images/coin-flips.gif)
+:::
+::::
 
 ## Extending mirai
 
@@ -319,23 +330,6 @@ crew_controller_aws_batch(
 <br>
 
 * Write your own plugins: <https://wlandau.github.io/crew/articles/plugins.html>
-
-## `crew` unblocks Shiny apps
-
-:::: {.columns style="font-size:130%"}
-
-```r
-observeEvent(input$button, {
-  replicate(1000, 
-    controller$push(flip_coin(), ...) %...>%
-      collect_flips(controller, ...)
-  )
-})
-```
-
-::::
-
-![](./images/coin-flips.gif)
 
 ## `crew` accelerates `targets`
 
