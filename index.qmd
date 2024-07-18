@@ -136,15 +136,14 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 
 - `mirai()` is now a 'promising' object
 - Native support for Shiny ExtendedTask / Plumber
+- Event-driven: resource-efficient & zero-latency
 
 :::: {.columns}
 ::: {.column width="50%"}
-![](./images/wiredcon.gif){.fragment}
+![](./images/nextgen.webp){.fragment}
 :::
 ::: {.column width="50%"}
-- Event-driven & efficient
-- Zero-latency
-- Launch one million promises <span style="color:darkgreen">all at once</span>
+- Launch<br>one<br>million<br>promises<br><span style="color:darkgreen">all at once</span>
 :::
 ::::
 
