@@ -50,11 +50,11 @@ knitr::opts_chunk$set(
 
 . . .
 
-<span style="color:darkgreen">Async is the ability to do multiple things at once</span>
+<span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span>
 
 . . .
 
-<span style="color:darkgreen">And keep doing more of those things</span>
+<span style="color:darkgreen">Async is not waiting while this happens</span>
 
 . . .
 
@@ -77,9 +77,9 @@ In many programming languages, async is treated as a 'first class' citizen
 
 . . .
 
-<span style="color:darkgreen">Async is the ability to do multiple things at once</span>
+<span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span>
 
-<span style="color:darkgreen">And keep doing more of those things</span>
+<span style="color:darkgreen">Async is not waiting while this happens</span>
 
 - {callr} only for local parallelism, saves files to filesystem
 - {future} relies on {parallelly} and blocks if tasks > workers
@@ -109,9 +109,9 @@ Minimalist Async Evaluation Framework for R
 
 . . .
 
-<span style="color:darkgreen">Async is the ability to do multiple things at once</span>
+<span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span>
 
-<span style="color:darkgreen">And keep doing more of those things</span>
+<span style="color:darkgreen">Async is not waiting while this happens</span>
 
 - {mirai} uses {nanonext} to deliver 'first-class' async
 - Connect thousands of parallel processes
@@ -330,6 +330,22 @@ crew_controller_aws_batch(
 <br>
 
 * Write your own plugins: <https://wlandau.github.io/crew/articles/plugins.html>
+
+## `crew` unblocks Shiny apps
+
+:::: {.columns style="font-size:130%"}
+
+```r
+observeEvent(input$button, {
+  replicate(1000, 
+    controller$push(flip_coin(), ...) %...>%
+      collect_flips(controller, ...)
+  )
+})
+```
+::::
+
+![](./images/coin-flips.gif)
 
 ## `crew` accelerates `targets`
 

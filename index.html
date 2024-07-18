@@ -424,10 +424,10 @@ Charlie Gao and Will Landau
 <section id="what-is-next-generation-async" class="slide level2">
 <h2>What is (next generation) async?</h2>
 <div class="fragment">
-<p><span style="color:darkgreen">Async is the ability to do multiple things at once</span></p>
+<p><span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span></p>
 </div>
 <div class="fragment">
-<p><span style="color:darkgreen">And keep doing more of those things</span></p>
+<p><span style="color:darkgreen">Async is not waiting while this happens</span></p>
 </div>
 <div class="fragment">
 <p>In many programming languages, async is treated as a ‘first class’ citizen</p>
@@ -448,8 +448,8 @@ Charlie Gao and Will Landau
 <section id="where-we-are-now-in-r" class="slide level2">
 <h2>Where we are now in R</h2>
 <div class="fragment">
-<p><span style="color:darkgreen">Async is the ability to do multiple things at once</span></p>
-<p><span style="color:darkgreen">And keep doing more of those things</span></p>
+<p><span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span></p>
+<p><span style="color:darkgreen">Async is not waiting while this happens</span></p>
 <ul>
 <li class="fragment">{callr} only for local parallelism, saves files to filesystem</li>
 <li class="fragment">{future} relies on {parallelly} and blocks if tasks &gt; workers</li>
@@ -479,8 +479,8 @@ Charlie Gao and Will Landau
 <p>ミライ <img src="./images/mirai.png" width="160" align="right"></p>
 <p>Minimalist Async Evaluation Framework for R</p>
 <div class="fragment">
-<p><span style="color:darkgreen">Async is the ability to do multiple things at once</span></p>
-<p><span style="color:darkgreen">And keep doing more of those things</span></p>
+<p><span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span></p>
+<p><span style="color:darkgreen">Async is not waiting while this happens</span></p>
 <ul>
 <li class="fragment">{mirai} uses {nanonext} to deliver ‘first-class’ async</li>
 <li class="fragment">Connect thousands of parallel processes</li>
@@ -666,21 +666,33 @@ Charlie Gao and Will Landau
 <li class="fragment">Write your own plugins: <a href="https://wlandau.github.io/crew/articles/plugins.html" class="uri">https://wlandau.github.io/crew/articles/plugins.html</a></li>
 </ul>
 </section>
+<section id="crew-unblocks-shiny-apps" class="slide level2">
+<h2><code>crew</code> unblocks Shiny apps</h2>
+<div class="columns" style="font-size:130%">
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, {</span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">replicate</span>(<span class="dv">1000</span>, </span>
+<span id="cb5-3"><a href=""></a>    controller<span class="sc">$</span><span class="fu">push</span>(<span class="fu">flip_coin</span>(), ...) <span class="sc">%...&gt;%</span></span>
+<span id="cb5-4"><a href=""></a>      <span class="fu">collect_flips</span>(controller, ...)</span>
+<span id="cb5-5"><a href=""></a>  )</span>
+<span id="cb5-6"><a href=""></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+<img data-src="./images/coin-flips.gif" class="r-stretch"></section>
 <section id="crew-accelerates-targets" class="slide level2">
 <h2><code>crew</code> accelerates <code>targets</code></h2>
 <p><br></p>
 <div class="columns" style="font-size:115%">
 <div class="column" style="width:75%;">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co">#_targets.R file</span></span>
-<span id="cb5-2"><a href=""></a></span>
-<span id="cb5-3"><a href=""></a><span class="fu">tar_option_set</span>(</span>
-<span id="cb5-4"><a href=""></a>  <span class="at">controller =</span> <span class="fu">crew_controller_aws_batch</span>(</span>
-<span id="cb5-5"><a href=""></a>    <span class="at">workers =</span> <span class="dv">100</span>,</span>
-<span id="cb5-6"><a href=""></a>    <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
-<span id="cb5-7"><a href=""></a>    <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
-<span id="cb5-8"><a href=""></a>    <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
-<span id="cb5-9"><a href=""></a>  )</span>
-<span id="cb5-10"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co">#_targets.R file</span></span>
+<span id="cb6-2"><a href=""></a></span>
+<span id="cb6-3"><a href=""></a><span class="fu">tar_option_set</span>(</span>
+<span id="cb6-4"><a href=""></a>  <span class="at">controller =</span> <span class="fu">crew_controller_aws_batch</span>(</span>
+<span id="cb6-5"><a href=""></a>    <span class="at">workers =</span> <span class="dv">100</span>,</span>
+<span id="cb6-6"><a href=""></a>    <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
+<span id="cb6-7"><a href=""></a>    <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
+<span id="cb6-8"><a href=""></a>    <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
+<span id="cb6-9"><a href=""></a>  )</span>
+<span id="cb6-10"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:25%;">
 <p><img data-src="./images/targets.png"></p>
 </div>
