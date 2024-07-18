@@ -331,6 +331,22 @@ crew_controller_aws_batch(
 
 * Write your own plugins: <https://wlandau.github.io/crew/articles/plugins.html>
 
+## `crew` unblocks Shiny apps
+
+:::: {.columns style="font-size:130%"}
+
+```r
+observeEvent(input$button, {
+  replicate(1000, 
+    controller$push(flip_coin(), ...) %...>%
+      collect_flips(controller, ...)
+  )
+})
+```
+::::
+
+![](./images/coin-flips.gif)
+
 ## `crew` accelerates `targets`
 
 <br>
