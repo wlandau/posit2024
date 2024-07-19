@@ -59,7 +59,7 @@ knitr::opts_chunk$set(
 . . .
 
 
-In many programming languages, async is treated as a 'first class' citizen
+Async is a 'first class' citizen in many languages:
 
 . . .
 
@@ -148,19 +148,29 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 :::
 ::::
 
-## Demonstration
+## Demo: simulating parallel coin flips
 
 <span style="color:darkgreen">First-class async for R / R Shiny</span>
 
-This app simulates thousands of coin flips to determine if a coin is fair. Each coin flip is a task, and these are run in parallel.
+<br>
 
 :::: {.columns}
+
 ::: {.column width="50%"}
-![](./images/coin-flips.gif)
+
+### <span style="color: red">x</span> Slow polling
+
+![](./images/polling.gif)
 :::
+
 ::: {.column width="50%"}
-![](./images/coin-flips.gif)
+
+### <span style="color: green">✔</span> `mirai` promises
+
+![](./images/promises.gif)
+
 :::
+
 ::::
 
 ## Extending mirai
@@ -345,7 +355,7 @@ observeEvent(input$button, {
 ```
 ::::
 
-![](./images/coin-flips.gif)
+![](./images/promises.gif)
 
 ## `crew` accelerates `targets`
 
@@ -377,3 +387,20 @@ tar_option_set(
 :::
 
 ::::
+
+# Recap
+
+<center>
+<img src="./images/mirai-crew.png" width=500>
+</center>
+
+* `mirai` is <span style="color:darkgreen; font-weight:bold">parallel</span> *and* first-class <span style="color:darkgreen; font-weight:bold">async</span>.
+* `crew` plugs `mirai` into heavy-duty platforms.
+* Game-changing for Shiny, `targets`, and R.
+
+# Thanks
+
+<center>
+<img src="./images/link.svg" width=400> <br>
+<https://wlandau.github.io/posit2024>
+</center>
