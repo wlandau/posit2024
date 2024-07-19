@@ -451,8 +451,9 @@ Charlie Gao and Will Landau
 <p><span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span></p>
 <p><span style="color:darkgreen">Async is not waiting while this happens</span></p>
 <ul>
-<li class="fragment">{callr} only for local parallelism, saves files to filesystem</li>
-<li class="fragment">{future} relies on {parallelly} and blocks if tasks &gt; workers</li>
+<li class="fragment">{parallel} is parallel, not async</li>
+<li class="fragment">{callr} only for local parallelism (saves files to filesystem), not always async</li>
+<li class="fragment">{future} relies on {parallelly} and blocks if tasks &gt; workers, not always async</li>
 </ul>
 </div>
 <div class="fragment">
