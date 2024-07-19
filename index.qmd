@@ -81,8 +81,9 @@ In many programming languages, async is treated as a 'first class' citizen
 
 <span style="color:darkgreen">Async is not waiting while this happens</span>
 
-- {callr} only for local parallelism, saves files to filesystem
-- {future} relies on {parallelly} and blocks if tasks > workers
+- {parallel} is parallel, not async
+- {callr} only for local parallelism (saves files to filesystem), not always async
+- {future} relies on {parallelly} and blocks if tasks > workers, not always async
 
 . . .
 
