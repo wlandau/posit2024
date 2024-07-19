@@ -424,13 +424,13 @@ Charlie Gao and Will Landau
 <section id="what-is-next-generation-async" class="slide level2">
 <h2>What is (next generation) async?</h2>
 <div class="fragment">
-<p><span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span></p>
+<p><span style="color:darkgreen"><strong>Parallelism</strong>: the ability to do multiple things at once</span></p>
 </div>
 <div class="fragment">
-<p><span style="color:darkgreen">Async is not waiting while this happens</span></p>
+<p><span style="color:darkgreen"><strong>Async</strong>: not waiting while this happens</span></p>
 </div>
 <div class="fragment">
-<p>In many programming languages, async is treated as a ‘first class’ citizen</p>
+<p>Async is a ‘first class’ citizen in many languages</p>
 </div>
 <div class="fragment">
 <div>
@@ -448,16 +448,16 @@ Charlie Gao and Will Landau
 <section id="where-we-are-now-in-r" class="slide level2">
 <h2>Where we are now in R</h2>
 <div class="fragment">
-<p><span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span></p>
-<p><span style="color:darkgreen">Async is not waiting while this happens</span></p>
+<p><span style="color:darkgreen"><strong>Parallelism</strong>: the ability to do multiple things at once</span></p>
+<p><span style="color:darkgreen"><strong>Async</strong>: not waiting while this happens</span></p>
+</div>
+<div class="fragment">
+<p><span style="color:brown">Missing a ‘first-class’ async experience</span></p>
 <ul>
 <li class="fragment">{parallel} is parallel, not async</li>
 <li class="fragment">{callr} only for local parallelism (saves files to filesystem), not always async</li>
 <li class="fragment">{future} relies on {parallelly} and blocks if tasks &gt; workers, not always async</li>
 </ul>
-</div>
-<div class="fragment">
-<p><span style="color:brown">Missing a ‘first-class’ async experience</span></p>
 </div>
 </section>
 <section id="bringing-first-class-async-to-r" class="slide level2">
@@ -480,8 +480,8 @@ Charlie Gao and Will Landau
 <p>ミライ <img src="./images/mirai.png" width="160" align="right"></p>
 <p>Minimalist Async Evaluation Framework for R</p>
 <div class="fragment">
-<p><span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span></p>
-<p><span style="color:darkgreen">Async is not waiting while this happens</span></p>
+<p><span style="color:darkgreen"><strong>Parallelism</strong>: the ability to do multiple things at once</span></p>
+<p><span style="color:darkgreen"><strong>Async</strong>: not waiting while this happens</span></p>
 <ul>
 <li class="fragment">{mirai} uses {nanonext} to deliver ‘first-class’ async</li>
 <li class="fragment">Connect thousands of parallel processes</li>
@@ -520,15 +520,17 @@ Charlie Gao and Will Landau
 </div>
 </div>
 </section>
-<section id="demonstration" class="slide level2">
-<h2>Demonstration</h2>
+<section id="demo-simulating-parallel-coin-flips" class="slide level2">
+<h2>Demo: simulating parallel coin flips</h2>
 <p><span style="color:darkgreen">First-class async for R / R Shiny</span></p>
-<p>This app simulates thousands of coin flips to determine if a coin is fair. Each coin flip is a task, and these are run in parallel.</p>
+<p><br></p>
 <div class="columns">
 <div class="column" style="width:50%;">
-<p><img data-src="./images/coin-flips.gif"></p>
+<h3 id="x-slow-polling"><span style="color: red">x</span> Slow polling</h3>
+<p><img data-src="./images/polling.gif"></p>
 </div><div class="column" style="width:50%;">
-<p><img data-src="./images/coin-flips.gif"></p>
+<h3 id="mirai-promises"><span style="color: green">✔</span> mirai promises</h3>
+<p><img data-src="./images/promises.gif"></p>
 </div>
 </div>
 </section>
@@ -666,8 +668,8 @@ Charlie Gao and Will Landau
 <li class="fragment">Write your own plugins: <a href="https://wlandau.github.io/crew/articles/plugins.html" class="uri">https://wlandau.github.io/crew/articles/plugins.html</a></li>
 </ul>
 </section>
-<section id="crew-unblocks-shiny-apps" class="slide level2">
-<h2><code>crew</code> unblocks Shiny apps</h2>
+<section id="parallel-async-in-shiny" class="slide level2">
+<h2>Parallel + async in Shiny</h2>
 <div class="columns" style="font-size:130%">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, {</span>
 <span id="cb5-2"><a href=""></a>  <span class="fu">replicate</span>(<span class="dv">1000</span>, </span>
@@ -677,7 +679,7 @@ Charlie Gao and Will Landau
 <span id="cb5-6"><a href=""></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<img data-src="./images/coin-flips.gif" class="r-stretch"></section>
+<img data-src="./images/promises.gif" class="r-stretch"></section>
 <section id="crew-accelerates-targets" class="slide level2">
 <h2><code>crew</code> accelerates <code>targets</code></h2>
 <p><br></p>
@@ -697,6 +699,23 @@ Charlie Gao and Will Landau
 <p><img data-src="./images/targets.png"></p>
 </div>
 </div>
+</section>
+<section id="recap" class="title-slide slide level1 center">
+<h1>Recap</h1>
+<center>
+<img src="./images/mirai-crew.png" width="500">
+</center>
+<ul>
+<li class="fragment"><code>mirai</code> is <span style="color:darkgreen; font-weight:bold">parallel</span> <em>and</em> first-class <span style="color:darkgreen; font-weight:bold">async</span></li>
+<li class="fragment"><code>crew</code> plugs <code>mirai</code> into heavy-duty platforms</li>
+</ul>
+</section>
+
+<section id="thanks" class="title-slide slide level1 center">
+<h1>Thanks</h1>
+<center>
+<img src="./images/link.svg" width="400"> <br> <a href="https://wlandau.github.io/posit2024" class="uri">https://wlandau.github.io/posit2024</a>
+</center>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p>© 2024 Hibiki AI Limited, Eli Lilly and Company</p>
