@@ -8,7 +8,7 @@
 <link href="index_files/libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="index_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="index_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.3.450">
+  <meta name="generator" content="quarto-1.4.555">
 
   <title>index</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -30,7 +30,7 @@
     }
     /* CSS for syntax highlighting */
     pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span { line-height: 1.25; }
     pre > code.sourceCode > span:empty { height: 1.2em; }
     .sourceCode { overflow: visible; }
     code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -220,7 +220,8 @@
   }
 
   .callout.callout-titled .callout-body > .callout-content > :last-child {
-    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
   }
 
   .callout.callout-titled .callout-icon::before {
@@ -423,13 +424,13 @@ Charlie Gao and Will Landau
 <section id="what-is-next-generation-async" class="slide level2">
 <h2>What is (next generation) async?</h2>
 <div class="fragment">
-<p><span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span></p>
+<p><span style="color:darkgreen"><strong>Parallelism</strong>: the ability to do multiple things at once</span></p>
 </div>
 <div class="fragment">
-<p><span style="color:darkgreen">Async: do not wait for tasks to complete.</span></p>
+<p><span style="color:darkgreen"><strong>Async</strong>: not waiting while this happens</span></p>
 </div>
 <div class="fragment">
-<p>Async is a ‘first class’ citizen in many languages:</p>
+<p>Async is a ‘first class’ citizen in many languages</p>
 </div>
 <div class="fragment">
 <div>
@@ -447,16 +448,16 @@ Charlie Gao and Will Landau
 <section id="where-we-are-now-in-r" class="slide level2">
 <h2>Where we are now in R</h2>
 <div class="fragment">
-<p><span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span></p>
-<p><span style="color:darkgreen">Async: do not wait for tasks to complete.</span></p>
+<p><span style="color:darkgreen"><strong>Parallelism</strong>: the ability to do multiple things at once</span></p>
+<p><span style="color:darkgreen"><strong>Async</strong>: not waiting while this happens</span></p>
+</div>
+<div class="fragment">
+<p><span style="color:brown">Missing a ‘first-class’ async experience</span></p>
 <ul>
 <li class="fragment">{parallel} is parallel, not async</li>
 <li class="fragment">{callr} only for local parallelism (saves files to filesystem), not always async</li>
 <li class="fragment">{future} relies on {parallelly} and blocks if tasks &gt; workers, not always async</li>
 </ul>
-</div>
-<div class="fragment">
-<p><span style="color:brown">Missing a ‘first-class’ async experience</span></p>
 </div>
 </section>
 <section id="bringing-first-class-async-to-r" class="slide level2">
@@ -479,8 +480,8 @@ Charlie Gao and Will Landau
 <p>ミライ <img src="./images/mirai.png" width="160" align="right"></p>
 <p>Minimalist Async Evaluation Framework for R</p>
 <div class="fragment">
-<p><span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span></p>
-<p><span style="color:darkgreen">Async: do not wait for tasks to complete.</span></p>
+<p><span style="color:darkgreen"><strong>Parallelism</strong>: the ability to do multiple things at once</span></p>
+<p><span style="color:darkgreen"><strong>Async</strong>: not waiting while this happens</span></p>
 <ul>
 <li class="fragment">{mirai} uses {nanonext} to deliver ‘first-class’ async</li>
 <li class="fragment">Connect thousands of parallel processes</li>
@@ -528,7 +529,7 @@ Charlie Gao and Will Landau
 <h3 id="x-slow-polling"><span style="color: red">x</span> Slow polling</h3>
 <p><img data-src="./images/polling.gif"></p>
 </div><div class="column" style="width:50%;">
-<h3 id="mirai-promises"><span style="color: green">✔</span> <code>mirai</code> promises</h3>
+<h3 id="mirai-promises"><span style="color: green">✔</span> mirai promises</h3>
 <p><img data-src="./images/promises.gif"></p>
 </div>
 </div>
@@ -620,31 +621,31 @@ Charlie Gao and Will Landau
 <h2>Simple controller interface</h2>
 <p><br></p>
 <div style="font-size:150%">
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># New controller</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a></span>
-<span id="cb1-3"><a href="#cb1-3"></a>controller <span class="ot">&lt;-</span> <span class="fu">crew_controller_local</span>(</span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="at">workers =</span> <span class="dv">2</span>,</span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="at">seconds_idle =</span> <span class="dv">10</span>,</span>
-<span id="cb1-6"><a href="#cb1-6"></a>  <span class="at">tasks_max =</span> <span class="cn">Inf</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># New controller</span></span>
+<span id="cb1-2"><a href=""></a></span>
+<span id="cb1-3"><a href=""></a>controller <span class="ot">&lt;-</span> <span class="fu">crew_controller_local</span>(</span>
+<span id="cb1-4"><a href=""></a>  <span class="at">workers =</span> <span class="dv">2</span>,</span>
+<span id="cb1-5"><a href=""></a>  <span class="at">seconds_idle =</span> <span class="dv">10</span>,</span>
+<span id="cb1-6"><a href=""></a>  <span class="at">tasks_max =</span> <span class="cn">Inf</span></span>
+<span id="cb1-7"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="simple-controller-interface-1" class="slide level2">
 <h2>Simple controller interface</h2>
 <p><br></p>
 <div style="font-size:150%">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Submit a task.</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>controller<span class="sc">$</span><span class="fu">push</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># Submit a task.</span></span>
+<span id="cb2-2"><a href=""></a></span>
+<span id="cb2-3"><a href=""></a>controller<span class="sc">$</span><span class="fu">push</span>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="simple-controller-interface-2" class="slide level2">
 <h2>Simple controller interface</h2>
 <p><br></p>
 <div style="font-size:150%">
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Get the result.</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a></span>
-<span id="cb3-3"><a href="#cb3-3"></a>controller<span class="sc">$</span><span class="fu">pop</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># Get the result.</span></span>
+<span id="cb3-2"><a href=""></a></span>
+<span id="cb3-3"><a href=""></a>controller<span class="sc">$</span><span class="fu">pop</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="aws-batch-plugin" class="slide level2">
@@ -652,12 +653,12 @@ Charlie Gao and Will Landau
 <div class="columns" style="font-size:125%">
 <div class="column" style="width:75%;">
 <p><br></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">crew_controller_aws_batch</span>(</span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="at">workers =</span> <span class="dv">100</span>,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="at">seconds_idle =</span> <span class="dv">60</span>,</span>
-<span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href=""></a><span class="fu">crew_controller_aws_batch</span>(</span>
+<span id="cb4-2"><a href=""></a>  <span class="at">workers =</span> <span class="dv">100</span>,</span>
+<span id="cb4-3"><a href=""></a>  <span class="at">seconds_idle =</span> <span class="dv">60</span>,</span>
+<span id="cb4-4"><a href=""></a>  <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
+<span id="cb4-5"><a href=""></a>  <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
+<span id="cb4-6"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:25%;">
 <p><img src="./images/crew.aws.batch.png"></p>
 </div>
@@ -670,12 +671,12 @@ Charlie Gao and Will Landau
 <section id="parallel-async-in-shiny" class="slide level2">
 <h2>Parallel + async in Shiny</h2>
 <div class="columns" style="font-size:130%">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, {</span>
-<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">replicate</span>(<span class="dv">1000</span>, </span>
-<span id="cb5-3"><a href="#cb5-3"></a>    controller<span class="sc">$</span><span class="fu">push</span>(<span class="fu">flip_coin</span>(), ...) <span class="sc">%...&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a>      <span class="fu">collect_flips</span>(controller, ...)</span>
-<span id="cb5-5"><a href="#cb5-5"></a>  )</span>
-<span id="cb5-6"><a href="#cb5-6"></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="fu">observeEvent</span>(input<span class="sc">$</span>button, {</span>
+<span id="cb5-2"><a href=""></a>  <span class="fu">replicate</span>(<span class="dv">1000</span>, </span>
+<span id="cb5-3"><a href=""></a>    controller<span class="sc">$</span><span class="fu">push</span>(<span class="fu">flip_coin</span>(), ...) <span class="sc">%...&gt;%</span></span>
+<span id="cb5-4"><a href=""></a>      <span class="fu">collect_flips</span>(controller, ...)</span>
+<span id="cb5-5"><a href=""></a>  )</span>
+<span id="cb5-6"><a href=""></a>})</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 <img data-src="./images/promises.gif" class="r-stretch"></section>
@@ -684,16 +685,16 @@ Charlie Gao and Will Landau
 <p><br></p>
 <div class="columns" style="font-size:115%">
 <div class="column" style="width:75%;">
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">#_targets.R file</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">tar_option_set</span>(</span>
-<span id="cb6-4"><a href="#cb6-4"></a>  <span class="at">controller =</span> <span class="fu">crew_controller_aws_batch</span>(</span>
-<span id="cb6-5"><a href="#cb6-5"></a>    <span class="at">workers =</span> <span class="dv">100</span>,</span>
-<span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
-<span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
-<span id="cb6-8"><a href="#cb6-8"></a>    <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a>  )</span>
-<span id="cb6-10"><a href="#cb6-10"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a><span class="co">#_targets.R file</span></span>
+<span id="cb6-2"><a href=""></a></span>
+<span id="cb6-3"><a href=""></a><span class="fu">tar_option_set</span>(</span>
+<span id="cb6-4"><a href=""></a>  <span class="at">controller =</span> <span class="fu">crew_controller_aws_batch</span>(</span>
+<span id="cb6-5"><a href=""></a>    <span class="at">workers =</span> <span class="dv">100</span>,</span>
+<span id="cb6-6"><a href=""></a>    <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
+<span id="cb6-7"><a href=""></a>    <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
+<span id="cb6-8"><a href=""></a>    <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
+<span id="cb6-9"><a href=""></a>  )</span>
+<span id="cb6-10"><a href=""></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:25%;">
 <p><img data-src="./images/targets.png"></p>
 </div>
@@ -705,8 +706,8 @@ Charlie Gao and Will Landau
 <img src="./images/mirai-crew.png" width="500">
 </center>
 <ul>
-<li class="fragment"><code>mirai</code> is <span style="color:darkgreen; font-weight:bold">parallel</span> <em>and</em> first-class <span style="color:darkgreen; font-weight:bold">async</span>.</li>
-<li class="fragment"><code>crew</code> plugs <code>mirai</code> into heavy-duty platforms.</li>
+<li class="fragment"><code>mirai</code> is <span style="color:darkgreen; font-weight:bold">parallel</span> <em>and</em> first-class <span style="color:darkgreen; font-weight:bold">async</span></li>
+<li class="fragment"><code>crew</code> plugs <code>mirai</code> into heavy-duty platforms</li>
 </ul>
 </section>
 
@@ -715,8 +716,10 @@ Charlie Gao and Will Landau
 <center>
 <img src="./images/link.svg" width="400"> <br> <a href="https://wlandau.github.io/posit2024" class="uri">https://wlandau.github.io/posit2024</a>
 </center>
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p>© 2024 Hibiki AI Limited, Eli Lilly and Company</p>
+</div>
 </div>
 </section>
     </div>
@@ -745,7 +748,6 @@ Charlie Gao and Will Landau
       Reveal.initialize({
 'controlsAuto': true,
 'previewLinksAuto': false,
-'smaller': false,
 'pdfSeparateFragments': false,
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
@@ -1044,10 +1046,27 @@ Charlie Gao and Will Landau
         // clear code selection
         e.clearSelection();
       });
-      function tippyHover(el, contentFn) {
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp('/' + window.location.host + '/');
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
         const config = {
           allowHTML: true,
-          content: contentFn,
           maxWidth: 500,
           delay: 100,
           arrow: false,
@@ -1057,8 +1076,17 @@ Charlie Gao and Will Landau
           interactive: true,
           interactiveBorder: 10,
           theme: 'light-border',
-          placement: 'bottom-start'
+          placement: 'bottom-start',
         };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
           config['offset'] = [0,0];
           config['maxWidth'] = 700;
         window.tippy(el, config); 
@@ -1072,7 +1100,11 @@ Charlie Gao and Will Landau
           try { href = new URL(href).hash; } catch {}
           const id = href.replace(/^#\/?/, "");
           const note = window.document.getElementById(id);
-          return note.innerHTML;
+          if (note) {
+            return note.innerHTML;
+          } else {
+            return "";
+          }
         });
       }
       const findCites = (el) => {

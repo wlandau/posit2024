@@ -50,16 +50,16 @@ knitr::opts_chunk$set(
 
 . . .
 
-<span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span>
+<span style="color:darkgreen">**Parallelism**: the ability to do multiple things at once</span>
 
 . . .
 
-<span style="color:darkgreen">Async: do not wait for tasks to complete.</span>
+<span style="color:darkgreen">**Async**: not waiting while this happens</span>
 
 . . .
 
 
-Async is a 'first class' citizen in many languages:
+Async is a 'first class' citizen in many languages
 
 . . .
 
@@ -77,17 +77,17 @@ Async is a 'first class' citizen in many languages:
 
 . . .
 
-<span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span>
+<span style="color:darkgreen">**Parallelism**: the ability to do multiple things at once</span>
 
-<span style="color:darkgreen">Async: do not wait for tasks to complete.</span>
-
-- {parallel} is parallel, not async
-- {callr} only for local parallelism (saves files to filesystem), not always async
-- {future} relies on {parallelly} and blocks if tasks > workers, not always async
+<span style="color:darkgreen">**Async**: not waiting while this happens</span>
 
 . . .
 
 <span style="color:brown">Missing a 'first-class' async experience</span>
+
+- {parallel} is parallel, not async
+- {callr} only for local parallelism (saves files to filesystem), not always async
+- {future} relies on {parallelly} and blocks if tasks > workers, not always async
 
 ## Bringing first class async to R
 
@@ -110,9 +110,9 @@ Minimalist Async Evaluation Framework for R
 
 . . .
 
-<span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span>
+<span style="color:darkgreen">**Parallelism**: the ability to do multiple things at once</span>
 
-<span style="color:darkgreen">Async: do not wait for tasks to complete.</span>
+<span style="color:darkgreen">**Async**: not waiting while this happens</span>
 
 - {mirai} uses {nanonext} to deliver 'first-class' async
 - Connect thousands of parallel processes
@@ -165,7 +165,7 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 
 ::: {.column width="50%"}
 
-### <span style="color: green">✔</span> `mirai` promises
+### <span style="color: green">✔</span> mirai promises
 
 ![](./images/promises.gif)
 
@@ -394,8 +394,8 @@ tar_option_set(
 <img src="./images/mirai-crew.png" width=500>
 </center>
 
-* `mirai` is <span style="color:darkgreen; font-weight:bold">parallel</span> *and* first-class <span style="color:darkgreen; font-weight:bold">async</span>.
-* `crew` plugs `mirai` into heavy-duty platforms.
+* `mirai` is <span style="color:darkgreen; font-weight:bold">parallel</span> *and* first-class <span style="color:darkgreen; font-weight:bold">async</span>
+* `crew` plugs `mirai` into heavy-duty platforms
 
 # Thanks
 
