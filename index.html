@@ -422,15 +422,25 @@ Charlie Gao and Will Landau
 <img src="./images/joe.png" class="r-stretch"></section>
 <section id="what-is-next-generation-async" class="slide level2">
 <h2>What is (next generation) async?</h2>
-<div class="fragment">
-<p><span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span></p>
+<div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-<div class="fragment">
-<p><span style="color:darkgreen">Async is not waiting while this happens</span></p>
+<p><strong>Parallelism vs async</strong></p>
 </div>
-<div class="fragment">
+<div class="callout-content">
+<ul>
+<li><span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span></li>
+<li><span style="color:darkgreen">Async: do not wait for tasks.</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <p>Async is a ‘first class’ citizen in many languages:</p>
-</div>
 <div class="fragment">
 <div>
 <ul>
@@ -446,15 +456,29 @@ Charlie Gao and Will Landau
 </section>
 <section id="where-we-are-now-in-r" class="slide level2">
 <h2>Where we are now in R</h2>
-<div class="fragment">
-<p><span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span></p>
-<p><span style="color:darkgreen">Async is not waiting while this happens</span></p>
+<div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Parallelism vs async</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span></li>
+<li><span style="color:darkgreen">Async: do not wait for tasks.</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <ul>
 <li class="fragment">{parallel} is parallel, not async</li>
 <li class="fragment">{callr} only for local parallelism (saves files to filesystem), not always async</li>
 <li class="fragment">{future} relies on {parallelly} and blocks if tasks &gt; workers, not always async</li>
 </ul>
-</div>
 <div class="fragment">
 <p><span style="color:brown">Missing a ‘first-class’ async experience</span></p>
 </div>
@@ -478,16 +502,30 @@ Charlie Gao and Will Landau
 <h2>mirai</h2>
 <p>ミライ <img src="./images/mirai.png" width="160" align="right"></p>
 <p>Minimalist Async Evaluation Framework for R</p>
-<div class="fragment">
-<p><span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span></p>
-<p><span style="color:darkgreen">Async is not waiting while this happens</span></p>
+<div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Parallelism vs async</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span></li>
+<li><span style="color:darkgreen">Async: do not wait for tasks.</span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 <ul>
 <li class="fragment">{mirai} uses {nanonext} to deliver ‘first-class’ async</li>
 <li class="fragment">Connect thousands of parallel processes</li>
 <li class="fragment">Launch millions of tasks <span style="color:darkgreen">all at once</span></li>
 <li class="fragment">Responsiveness: <span style="color:red">milli</span>seconds -&gt; <span style="color:blue">micro</span>seconds</li>
 </ul>
-</div>
 </section>
 <section id="the-current-generation-of-promises" class="slide level2">
 <h2>The current generation of promises</h2>

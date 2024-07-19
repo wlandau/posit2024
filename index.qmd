@@ -48,16 +48,18 @@ knitr::opts_chunk$set(
 
 ## What is (next generation) async?
 
-. . .
+::: {.nonincremental }
 
-<span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span>
+::: {.callout-tip}
 
-. . .
+## Parallelism vs async
 
-<span style="color:darkgreen">Async is not waiting while this happens</span>
+* <span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span>
+* <span style="color:darkgreen">Async: do not wait for tasks.</span>
 
-. . .
+:::
 
+:::
 
 Async is a 'first class' citizen in many languages:
 
@@ -75,11 +77,18 @@ Async is a 'first class' citizen in many languages:
 
 ## Where we are now in R
 
-. . .
+::: {.nonincremental }
 
-<span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span>
+::: {.callout-tip}
 
-<span style="color:darkgreen">Async is not waiting while this happens</span>
+## Parallelism vs async
+
+* <span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span>
+* <span style="color:darkgreen">Async: do not wait for tasks.</span>
+
+:::
+
+:::
 
 - {parallel} is parallel, not async
 - {callr} only for local parallelism (saves files to filesystem), not always async
@@ -108,11 +117,18 @@ Async is a 'first class' citizen in many languages:
 
 Minimalist Async Evaluation Framework for R
 
-. . .
+::: {.nonincremental }
 
-<span style="color:darkgreen">Parallelism is the ability to do multiple things at once</span>
+::: {.callout-tip}
 
-<span style="color:darkgreen">Async is not waiting while this happens</span>
+## Parallelism vs async
+
+* <span style="color:darkgreen">Parallelism: do multiple tasks at the same time.</span>
+* <span style="color:darkgreen">Async: do not wait for tasks.</span>
+
+:::
+
+:::
 
 - {mirai} uses {nanonext} to deliver 'first-class' async
 - Connect thousands of parallel processes
