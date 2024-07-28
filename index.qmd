@@ -59,7 +59,7 @@ knitr::opts_chunk$set(
 . . .
 
 
-Async is a 'first class' citizen in many languages
+Async is a 'first class' experience in many languages
 
 . . .
 
@@ -137,14 +137,16 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 
 - `mirai()` is now a 'promising' object
 - Native support for Shiny ExtendedTask / Plumber
-- Event-driven: resource-efficient & zero-latency
+- Event-driven: no polling & zero-latency
 
 :::: {.columns}
 ::: {.column width="50%"}
 ![](./images/nextgen.webp){.fragment}
 :::
 ::: {.column width="50%"}
-- Launch<br>one<br>million<br>promises<br><span style="color:darkgreen">all at once</span>
+<span class="fragment">
+<br>Launching<br>one million promises<br><span style="color:darkgreen">all at once</span>
+</span>
 :::
 ::::
 
