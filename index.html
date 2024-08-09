@@ -647,15 +647,16 @@ Charlie Gao and Will Landau
 </section>
 <section id="aws-batch-plugin" class="slide level2">
 <h2>AWS Batch plugin</h2>
-<div class="columns" style="font-size:125%">
+<div class="columns" style="font-size:120%">
 <div class="column" style="width:75%;">
 <p><br></p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">crew_controller_aws_batch</span>(</span>
 <span id="cb4-2"><a href="#cb4-2"></a>  <span class="at">workers =</span> <span class="dv">100</span>,</span>
-<span id="cb4-3"><a href="#cb4-3"></a>  <span class="at">seconds_idle =</span> <span class="dv">60</span>,</span>
+<span id="cb4-3"><a href="#cb4-3"></a>  <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
 <span id="cb4-4"><a href="#cb4-4"></a>  <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
-<span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a href="#cb4-5"></a>  <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span>,</span>
+<span id="cb4-6"><a href="#cb4-6"></a>  <span class="at">port =</span> <span class="dv">57000</span> <span class="co"># +TCP in security group</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:25%;">
 <p><img src="./images/crew.aws.batch.png"></p>
 </div>
@@ -690,7 +691,7 @@ Charlie Gao and Will Landau
 <span id="cb6-6"><a href="#cb6-6"></a>    <span class="at">seconds_idle =</span> <span class="dv">120</span>,</span>
 <span id="cb6-7"><a href="#cb6-7"></a>    <span class="at">aws_batch_job_definition =</span> <span class="st">"DEF"</span>,</span>
 <span id="cb6-8"><a href="#cb6-8"></a>    <span class="at">aws_batch_job_queue =</span> <span class="st">"QUEUE"</span>,</span>
-<span id="cb6-9"><a href="#cb6-9"></a>    <span class="at">port =</span> <span class="dv">57000</span> <span class="co"># allow TCP within the security group</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a>    <span class="at">port =</span> <span class="dv">57000</span> <span class="co"># +TCP in security group</span></span>
 <span id="cb6-10"><a href="#cb6-10"></a>  )</span>
 <span id="cb6-11"><a href="#cb6-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column" style="width:25%;">

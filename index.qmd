@@ -315,7 +315,7 @@ controller$pop()
 
 ## AWS Batch plugin
 
-:::: {.columns style="font-size:125%"}
+:::: {.columns style="font-size:120%"}
 
 ::: {.column width="75%"}
 
@@ -324,9 +324,10 @@ controller$pop()
 ```r
 crew_controller_aws_batch(
   workers = 100,
-  seconds_idle = 60,
+  seconds_idle = 120,
   aws_batch_job_definition = "DEF",
-  aws_batch_job_queue = "QUEUE"
+  aws_batch_job_queue = "QUEUE",
+  port = 57000 # +TCP in security group
 )
 ```
 :::
@@ -376,7 +377,7 @@ tar_option_set(
     seconds_idle = 120,
     aws_batch_job_definition = "DEF",
     aws_batch_job_queue = "QUEUE",
-    port = 57000 # allow TCP within the security group
+    port = 57000 # +TCP in security group
   )
 )
 ```
