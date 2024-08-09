@@ -392,6 +392,8 @@ tar_option_set(
 
 ::::
 
+* <https://books.ropensci.org/targets/crew.html>
+
 # Recap
 
 <center>
