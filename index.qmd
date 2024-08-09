@@ -375,7 +375,8 @@ tar_option_set(
     workers = 100,
     seconds_idle = 120,
     aws_batch_job_definition = "DEF",
-    aws_batch_job_queue = "QUEUE"
+    aws_batch_job_queue = "QUEUE",
+    port = 57000 # allow TCP within the security group
   )
 )
 ```
