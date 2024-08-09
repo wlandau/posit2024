@@ -222,9 +222,9 @@ A 'promising' object is used in Shiny ExtendedTask / Plumber:
 
 ![](./images/plugins.png)
 
-1. `mirai` provides low-<b><span style="color:brown">overhead</span></b> interprocess communication
-2. Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b>
-3. Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems
+1. Auto-scaling reduces <b><span style="color:brown">overhead</span></b> and <b><span style="color:darkGreen">cost</span></b>
+2. Plugins <b><span style="color:blue">access</span></b> big high-performance computing systems
+3. `mirai` provides low-<b><span style="color:brown">overhead</span></b> interprocess communication
 
 ## Low-<b><span style="color:brown">overhead</span></b> communication
 
